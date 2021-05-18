@@ -46,7 +46,7 @@
     <div style="background-color: white; margin-top: 20px; padding: 10px">
         <h3>Danh mục</h3>
         <div class="row container container-fluid">
-            @*@foreach (var item in ViewBag.ChuyenMuc)
+            @foreach (var item in ViewBag.ChuyenMuc)
                 {
                     <div class="col-lg-2 col-md-4 col-sm-4">
                         <a href="@Url.Action("DSDanhMuc", "ChuyenMuc",new { maChuyenMuc = item.maChuyenMuc })" style="text-decoration: none; color: black">
@@ -57,7 +57,7 @@
                             <p style="text-align: center">@item.tenChuyenMuc</p>
                         </a>
                     </div>
-                }*@
+                }
         </div>
     </div>
 
@@ -65,9 +65,13 @@
     <div style="background-color: white; margin-top: 20px; padding: 10px">
         <h3>Tin đăng mới</h3>
         <div class="row" style="margin:10px">
-
-            @*@foreach (var item in ViewBag.DSBaiDang)
+            @{ int ii = 0;}
+            @foreach (var item in ViewBag.DSBaiDang)
+            {
+                if (ii==8)
                 {
+                    break;
+                }ii++;
                     <div class="col-6 col-md-4 col-lg-3">
                         <div onclick="location.href='@Url.Action("CTTin", "DangTin", new { maBaiDang = item.maBaiDang })'" class="card card-hover" style="height:330px; margin-top:20px">
                             @foreach (var i in ViewBag.Hinh)
@@ -101,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                }*@
+                }
         </div>
     </div>
     <div style="background-color: white; margin-top: 20px; padding: 10px">

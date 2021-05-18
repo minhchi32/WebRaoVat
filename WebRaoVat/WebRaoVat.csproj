@@ -145,6 +145,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ChuyenMucController.cs" />
     <Compile Include="Controllers\DangTinController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
@@ -229,6 +230,9 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\Shared\_LayoutAccount.cshtml" />
+    <Content Include="Views\ChuyenMuc\NavDanhMuc.cshtml" />
+    <Content Include="Views\ChuyenMuc\DSBaiDang.cshtml" />
+    <Content Include="Views\ChuyenMuc\DSDanhMuc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

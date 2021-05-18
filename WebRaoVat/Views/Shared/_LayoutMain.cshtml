@@ -4,14 +4,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="container-fluid body-content" style="margin-top:20px">
+<main class="container body-content" style="margin-top:20px">
     <div class="row">
-        <div class="col-md-3">
-            @{Html.RenderAction("NavChuyenMuc", "ChuyenMuc");}
+        <div style="background-color: white; margin-top: 20px; padding: 10px">
+            <h3>Danh mục</h3>
+            <div class="row container container-fluid">
+                @foreach (var item in ViewBag.ChuyenMuc)
+                {
+                    <div class="col-lg-2 col-md-4 col-sm-4">
+                        <a href="@Url.Action("DSDanhMuc", "ChuyenMuc",new { maChuyenMuc = item.maChuyenMuc })" style="text-decoration: none; color: black">
+                            <img src="@item.hinhChuyenMuc"
+                                 alt=""
+                                 class="img-thumbnail"
+                                 style="border: none" />
+                            <p style="text-align: center">@item.tenChuyenMuc</p>
+                        </a>
+                    </div>
+                }
+            </div>
+            <hr />
+            <div class="container row">
+                <div class="col-md-3">
+                    @{Html.RenderAction("NavDanhMuc", "ChuyenMuc");}
+                </div>
+                <div class="col-md-9" id="div-content">
+                    @RenderBody()
+                </div>
+            </div>
         </div>
-        <div class="col-md-9" id="div-content">
-            @RenderBody()
-        </div>
+        
     </div>
 </main>
 
