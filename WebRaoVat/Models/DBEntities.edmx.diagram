@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ac5912a564a431293a195674e38ed5e" Name="Diagram1">
+        <EntityTypeShape EntityType="DBRaoVatModel.BaiDang" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.BaiLuu" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.ChuyenMuc" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.DanhGia" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.DanhMuc" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.GiaoDich" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.Hinh" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.LoaiBaiDang" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.NguoiDung" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.Quyen" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.ThoiGianBaiDangTrangChu" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.TinhTrangBaiDang" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.TinhTrangSanPham" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBRaoVatModel.Vung" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiDang__maDanhM__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiDang__maGiaoD__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiDang__maLoaiB__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiDang__maNguoi__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiDang__maTinhT__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiDang__maTinhT__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiDang__maVung__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiLuu__maBaiDan__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__Hinh__maBaiDang__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__ThoiGianB__maBai__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__BaiLuu__maNguoiD__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__DanhMuc__maChuye__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__DanhGia__maNguoi__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__DanhGia__maNguoi__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DBRaoVatModel.FK__NguoiDung__maQuy__38996AB5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
