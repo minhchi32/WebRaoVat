@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRaoVat", "WebRaoVat\WebRaoVat.csproj", "{F77D08A9-7106-45E8-9A51-7D8C4EF4EBC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRaoVat.Tests", "WebRaoVat.Tests\WebRaoVat.Tests.csproj", "{9EBEC173-04A2-4D22-8DBF-0A9F258B61FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F77D08A9-7106-45E8-9A51-7D8C4EF4EBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F77D08A9-7106-45E8-9A51-7D8C4EF4EBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F77D08A9-7106-45E8-9A51-7D8C4EF4EBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F77D08A9-7106-45E8-9A51-7D8C4EF4EBC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBEC173-04A2-4D22-8DBF-0A9F258B61FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBEC173-04A2-4D22-8DBF-0A9F258B61FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBEC173-04A2-4D22-8DBF-0A9F258B61FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBEC173-04A2-4D22-8DBF-0A9F258B61FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B161F69F-EDFD-4C83-B987-8F30E8436CCE}
+	EndGlobalSection
+EndGlobal
