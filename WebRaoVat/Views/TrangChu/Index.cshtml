@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div id="carouselIndicators"
+         class="carousel slide"
+         data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselIndicators"
+                data-slide-to="0"
+                class="active"></li>
+            <li data-target="#carouselIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Content/images/sale1.jpg" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/images/sale2.jpg" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/images/sale3.png" class="d-block w-100" alt="..." />
+            </div>
+        </div>
+        <a class="carousel-control-prev"
+           href="#carouselIndicators"
+           role="button"
+           data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next"
+           href="#carouselIndicators"
+           role="button"
+           data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div style="background-color: white; margin-top: 20px; padding: 10px">
+        <h3>Danh mục</h3>
+        <div class="row container container-fluid">
+            @*@foreach (var item in ViewBag.ChuyenMuc)
+                {
+                    <div class="col-lg-2 col-md-4 col-sm-4">
+                        <a href="@Url.Action("DSDanhMuc", "ChuyenMuc",new { maChuyenMuc = item.maChuyenMuc })" style="text-decoration: none; color: black">
+                            <img src="@item.hinhChuyenMuc"
+                                 alt=""
+                                 class="img-thumbnail"
+                                 style="border: none" />
+                            <p style="text-align: center">@item.tenChuyenMuc</p>
+                        </a>
+                    </div>
+                }*@
+        </div>
+    </div>
+
+
+    <div style="background-color: white; margin-top: 20px; padding: 10px">
+        <h3>Tin đăng mới</h3>
+        <div class="row" style="margin:10px">
+
+            @*@foreach (var item in ViewBag.DSBaiDang)
+                {
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div onclick="location.href='@Url.Action("CTTin", "DangTin", new { maBaiDang = item.maBaiDang })'" class="card card-hover" style="height:330px; margin-top:20px">
+                            @foreach (var i in ViewBag.Hinh)
+                            {
+                                if (item.maBaiDang == i.maBaiDang)
+                                {
+                                    <img src="@i.path" alt="Alternate Text" style="height:55%; overflow:hidden" />
+                                    break;
+                                }
+                            }
+                            <div class="card-body" style="width: 100%">
+                                @if (item.tieuDe.ToString().Length > 44)
+                                {
+                                    <p class="card-text">
+                                        @item.tieuDe.ToString().Substring(0, 44) ...
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text"> @item.tieuDe</p>
+
+                                }
+                                @if (@item.gia.ToString().Length > 10)
+                                {
+                                    <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
+                                }
+                                else
+                                {
+                                    <p>@item.gia VNĐ</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }*@
+        </div>
+    </div>
+    <div style="background-color: white; margin-top: 20px; padding: 10px">
+        <h3>
+            RaVa - Chợ Mua Bán, Rao Vặt Trực Tuyến Hàng Đầu Của Người Việt
+        </h3>
+        <p>
+            RaVa chính thức gia nhập thị trường Việt Nam vào đầu năm 2021, với
+            mục đích tạo ra cho bạn một kênh rao vặt trung gian, kết nối người
+            mua với người bán lại với nhau bằng những giao dịch cực kỳ đơn giản,
+            tiện lợi, nhanh chóng, an toàn, mang đến hiệu quả bất ngờ.
+        </p>
+        <p>
+            RaVa tự hào là Website rao vặt được ưa chuộng hàng đầu Việt Nam.
+            Hàng ngàn món hời từ Bất động sản, Nhà cửa, Xe cộ, Đồ điện tử, Thú
+            cưng, Vật dụng cá nhân... đến tìm việc làm, thông tin tuyển dụng,
+            các dịch vụ - du lịch được đăng tin, rao bán trên RaVa.
+        </p>
+        <p>
+            Với RaVa, bạn có thể dễ dàng mua bán, trao đổi bất cứ một loại mặt
+            hàng nào, dù đó là đồ cũ hay đồ mới với nhiều lĩnh vực:
+        </p>
+        <p>
+            Phương tiện đi lại: xe ô tô, xe máy có độ bền cao, giá cả hợp lý.
+        </p>
+        <p>
+            Đồ dùng cá nhân: quần áo, giày dép, túi xách, đồng hồ... đa phong
+            cách, hợp thời trang.
+        </p>
+        <p>
+            Đồ điện tử: điện thoại di động, máy tính bảng, laptop, tivi, loa,
+            amply...; đồ điện gia dụng: máy giặt, tủ lạnh, máy lạnh điều hòa...
+            với rất nhiều nhãn hiệu, kích thước khác nhau.
+        </p>
+        <p>
+            Đồ ăn, thực phẩm: các món ăn được chế biến thơm ngon, hấp dẫn, thực
+            phẩm tươi sống, an toàn & giá cả hợp lý.
+        </p>
+        <p>
+            Và còn rất nhiều mặt hàng khác nữa đã và đang được rao bán tại RaVa.
+        </p>
+        <p>
+            Mỗi người trong chúng ta đều có những sản phẩm đã qua sử dụng và
+            không cần dùng tới nữa. Vậy còn chần chừ gì nữa mà không để nó trở
+            nên giá trị hơn với người khác. Rất đơn giản, bạn chỉ cần chụp hình
+            lại, mô tả cụ thể về sản phẩm và sử dụng ứng dụng Đăng tin miễn phí
+            của RaVa là đã có thể đến gần hơn với người cần nó.
+        </p>
+        <p>
+            Không những thế, website RaVa.com còn cung cấp cho bạn thông tin về
+            giá cả các mặt hàng để bạn có thể tham khảo. Đồng thời, thông qua
+            Blog kinh nghiệm, RaVat sẽ tư vấn, chia sẻ cho bạn những thông tin
+            bổ ích, bí quyết, mẹo vặt giúp bạn có những giao dịch mua bán an
+            toàn, đảm bảo. RaVa cũng sẵn sàng hỗ trợ bạn trong mọi trường hợp
+            cần thiết.
+        </p>
+        <p>Chúc các bạn có những trải nghiệm mua bán tuyệt vời trên RaVa.</p>
+    </div>
+</div>
+
+
+<style>
+    .card-hover:hover {
+        background-color: white;
+        color: black;
+        box-shadow: 3px 2px 10px gray;
+        cursor: pointer;
+    }
+
+    .card-text {
+        color: gray;
+    }
+</style>
+

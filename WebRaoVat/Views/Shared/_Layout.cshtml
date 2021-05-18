@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+</head>
+<body style=" width: 100%; height:100% ; background-image:url(/Content/images/main_bg.jpg);background-repeat: no-repeat;background-attachment: fixed;">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="@Url.Action("Index", "TrangChu")">
+                    <img src="~/Content/images/logomain.png"
+                         alt=""
+                         style="width: 100px; height: 50px" />
+                </a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#nav-main"
+                        aria-controls="nav-main"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="nav-main">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-house-door-fill"></i>&ensp;Trang chủ
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "TrangChu")"><i class="bi bi-basket-fill"></i>&ensp;Tôi bán</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            @if (Session["ten"] == null)
+                            {
+                                <a class="nav-link" href="@Url.Action("Index","NguoiDung")"><i class="bi bi-person-circle"></i>&ensp;Đăng nhập/ Đăng ký</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link dropdown-toggle" href="" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> @Session["ten"]</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown">
+                                    <a class="dropdown-item" href="@Url.Action("XemThongTinCaNhan","User",new {id= Session["id"]})">Xem thông tin cá nhân</a>
+                                    @switch (Session["maQuyen"])
+                                    {
+                                        case 2:
+                                            <a class="dropdown-item" href="@Url.Action("Index","Admin")">Admin</a>
+                                            break;
+                                    }
+                                    <a class="dropdown-item" href="@Url.Action("LogOutUser","NguoiDung")">Đăng xuất</a>
+                                </div>
+                            }
+                        </li>
+                        <li class="nav-item">
+                            @if (Session["ten"] == null)
+                            {
+                                <button class="btn btn-primary" onclick="location.href='@Url.Action("Index","NguoiDung")'">
+                                    <i class="bi bi-calendar-check"></i>&ensp; Đăng tin
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-primary" onclick="location.href='@Url.Action("DangBaiDang", "DangTin",new { manguoidung = Session["id"]})'">
+                                    <i class="bi bi-calendar-check"></i>&ensp; Đăng tin
+                                </button>
+                            }
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2"
+                               type="text"
+                               placeholder="Search"
+                               aria-label="Search" />
+                        <button class="btn btn-outline-success my-2 my-sm-0"
+                                type="submit">
+                            Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+
+    <footer class="page-footer font-small blue pt-4" style="margin-top: 20px;background-color:white">
+        <div class="container text-center text-md-left">
+            <div class="row">
+                <div class="col-5 col-sm-5 col-lg-5"><h5>Rava.com</h5></div>
+                <div class="col-2 col-sm-2 col-lg-2"></div>
+                <div class="col-5 col-sm-5 col-lg-5"><h5>ĐƯỢC VẬN HÀNH BỞI</h5></div>
+            </div>
+            <div class="row">
+                <div class="col-5 col-sm-5 col-lg-5">
+                    <b>828 Sư Vạn Hạnh, Phường 12, Quận 10, TP.HCM</b>
+                </div>
+                <div class="col-2 col-sm-2 col-lg-2"></div>
+                <div class="col-5 col-sm-5 col-lg-5">
+                    <img src="~/Content/images/vcorp.png"
+                         class="img-thumbnail"
+                         alt=""
+                         style="float: left; border: none"
+                         width="50%"
+                         height="100%" />
+                    <img src="~/Content/images/BoCongThuong.png"
+                         alt=""
+                         class="img-thumbnail"
+                         width="40%"
+                         height="100%"
+                         style="border: none" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 col-sm-5 col-lg-5">
+                    <b><i class="bi bi-envelope"></i>&ensp; lienhe@RaVa.com</b>
+                </div>
+                <div class="col-2 col-sm-2 col-lg-2"></div>
+                <div class="col-5 col-sm-5 col-lg-5">
+                    <b>Copyright © 2006 - RaVa.com Công ty Cổ phần VCCorp</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 col-sm-5 col-lg-5">
+                    <b>
+                        <i class="bi bi-telephone-outbound-fill"></i>&ensp; CSKH: 056
+                        54267777 (Ext: 797/ 256). <br />Fax: 031 74531591 Kinh doanh: 099
+                        111 22 45
+                    </b>
+                </div>
+                <div class="col-2 col-sm-2 col-lg-2"></div>
+                <div class="col-5 col-sm-5 col-lg-5">
+                    <b>
+                        Giấy đăng ký kinh doanh số: 1010205480 do Sở Kế hoạch và Đầu tư
+                        cấp ngày 4/1/2021
+                    </b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 col-sm-5 col-lg-5">
+                    <i class="bi bi-facebook"></i><b>&ensp; RaVaCom</b>
+                </div>
+                <div class="col-2 col-sm-2 col-lg-2"></div>
+                <div class="col-5 col-sm-5 col-lg-5">
+                    <b>Email: info@vccorp.vn</b>
+                </div>
+            </div>
+            <div class="row" style="height: 50px">
+                <div class="col-5 col-sm-5 col-lg-5"></div>
+                <div class="col-2 col-sm-2 col-lg-2"></div>
+                <div class="col-5 col-sm-5 col-lg-5"></div>
+            </div>
+        </div>
+        @*<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>*@
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+                crossorigin="anonymous"></script>
+    </footer>
+
+</body>
+</html>
+<script src="~/Content/js/script.js"></script>

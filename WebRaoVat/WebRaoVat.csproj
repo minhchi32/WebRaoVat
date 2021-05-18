@@ -88,11 +88,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\1767602.jpg" />
+    <Content Include="Content\images\all.png" />
+    <Content Include="Content\images\bikes.png" />
+    <Content Include="Content\images\BoCongThuong.png" />
+    <Content Include="Content\images\button-ipv6-big.png" />
+    <Content Include="Content\images\c73b3f10f0099db70a6c9527ed765721-2718672906929441189.jpg" />
+    <Content Include="Content\images\cab196080e4d8a93e23ad7eb55691ad3-2718672905607441455.jpg" />
+    <Content Include="Content\images\Capture.PNG" />
+    <Content Include="Content\images\car01.jpg" />
+    <Content Include="Content\images\car02.jpg" />
+    <Content Include="Content\images\cart.png" />
+    <Content Include="Content\images\d0e6da06b2201c4ebb7358a6556fcd62-2718672905235452665.jpg" />
+    <Content Include="Content\images\food.png" />
+    <Content Include="Content\images\fridge.png" />
+    <Content Include="Content\images\furniture.png" />
+    <Content Include="Content\images\Group 5.png" />
+    <Content Include="Content\images\Group.png" />
+    <Content Include="Content\images\image1.png" />
+    <Content Include="Content\images\img_default.jpg" />
+    <Content Include="Content\images\jewelry.png" />
+    <Content Include="Content\images\logomain.png" />
+    <Content Include="Content\images\logoz.png" />
+    <Content Include="Content\images\main_bg.jpg" />
+    <Content Include="Content\images\mouse.png" />
+    <Content Include="Content\images\pngtree-big-city-background-with-black-white-buildings-and-reflection-in-beach-image_382386.jpg" />
+    <Content Include="Content\images\sale1.jpg" />
+    <Content Include="Content\images\sale2.jpg" />
+    <Content Include="Content\images\sale3.png" />
+    <Content Include="Content\images\smartthings.png" />
+    <Content Include="Content\images\top_img.jpg" />
+    <Content Include="Content\images\vcorp.png" />
+    <Content Include="Content\js\script.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DangTinController.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -101,6 +137,12 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\TrangChu\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Views\Shared\_LayoutAccount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,8 +152,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Content\css\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\DangTin\" />
+    <Folder Include="Views\NguoiDung\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

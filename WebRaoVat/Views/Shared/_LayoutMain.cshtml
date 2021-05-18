@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "_LayoutMain";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="container-fluid body-content" style="margin-top:20px">
+    <div class="row">
+        <div class="col-md-3">
+            @{Html.RenderAction("NavChuyenMuc", "ChuyenMuc");}
+        </div>
+        <div class="col-md-9" id="div-content">
+            @RenderBody()
+        </div>
+    </div>
+</main>
+
