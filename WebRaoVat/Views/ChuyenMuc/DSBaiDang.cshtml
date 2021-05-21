@@ -21,7 +21,7 @@ else
             @foreach (var item in Model)
             {
                 <div class="col-6 col-md-4 col-lg-4">
-                    <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTBaiDang", "DangTin", new { maBaiDang = item.maBaiDang })'">
+                    <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTBaiDang", "DangTin", new { maBaiDang = item.maBaiDang,maChuyenMuc=item.DanhMuc.maChuyenMuc })'">
                         @foreach (var i in ViewBag.Hinh)
                         {
                             if (item.maBaiDang == i.maBaiDang)

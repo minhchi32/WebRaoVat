@@ -15,6 +15,13 @@ namespace WebRaoVat.Controllers
         {
             return View();
         }
-        
+        public ActionResult CTBaiDang(int maBaiDang,int maChuyenMuc)
+        {
+            ViewBag.ChuyenMuc = database.ChuyenMucs.ToList();
+            var ctBaiDang = database.BaiDangs.Where(s => s.maBaiDang == maBaiDang).FirstOrDefault();
+            ViewBag.Hinh = database.Hinhs.ToList();
+            //ViewBag.BaiDang = database.BaiDangs.Where(s => s.maDanhMuc == maDanhMuc).FirstOrDefault();
+            return View(ctBaiDang);
+        }
     }
 }
