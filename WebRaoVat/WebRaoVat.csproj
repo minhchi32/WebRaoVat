@@ -161,6 +161,7 @@
     <Compile Include="Models\ChuyenMuc.cs">
       <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChuyenMucDanhMucViewModel.cs" />
     <Compile Include="Models\DanhGia.cs">
       <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
@@ -235,6 +236,10 @@
     <Content Include="Views\ChuyenMuc\DSDanhMuc.cshtml" />
     <Content Include="Views\DangTin\CTBaiDang.cshtml" />
     <Content Include="Views\NguoiDung\Index.cshtml" />
+    <Content Include="Views\DangTin\DangBaiDang.cshtml" />
+    <Content Include="Views\Shared\_LayoutChuyenMuc.cshtml" />
+    <Content Include="Views\ChuyenMuc\NavChuyenMuc.cshtml" />
+    <Content Include="Views\Shared\DanhMucOptionPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

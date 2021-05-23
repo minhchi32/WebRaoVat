@@ -1,0 +1,8 @@
+﻿<option value="">-- chọn danh mục --</option>
+@if (ViewBag.DSDanhMuc != null)
+{
+    foreach (var item in ViewBag.DSDanhMuc)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

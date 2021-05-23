@@ -1,0 +1,173 @@
+﻿@*@model WebRaoVat.Models.BaiDang*@
+@model WebRaoVat.Models.ChuyenMucDanhMucViewModel
+@{
+    ViewBag.Title = "DangTin";
+    Layout = "~/Views/Shared/_LayoutChuyenMuc.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div style="position: absolute; width:90%;">
+            <h2 style="margin-left:20px; line-height:75px; color:white;">Đăng tin</h2>
+        </div>
+        <img src="~/Content/images/top_img.jpg" id="top-img" style=" width: 100%; height: 75px; overflow:hidden" />
+    </div>
+</div>
+<br />
+@using (Html.BeginForm("DangBaiDang", "DangTin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="container-fluid bg">
+        <section class="row justify-content-center">
+            <section class="col-12 col-sm-8 col-md-10 form-container">
+                <form class="form-container">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.tieuDe, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.tieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.tieuDe, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.moTa, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.moTa, 10, 40, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.moTa, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.gia, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.diaChi, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <p class="control-label col-md-12">Tình trạng sản phẩm</p>
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(model => model.maTinhTrangSanPham, ViewBag.DSTTSP as SelectList, "-- chọn tình trạng sản phẩm --", new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.maTinhTrangSanPham, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <p class="control-label col-md-12">Chuyên mục</p>
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(model => model.maChuyenMuc, ViewBag.DSChuyenMuc as SelectList, "-- chọn chuyên mục --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.maChuyenMuc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <p class="control-label col-md-12">Danh mục</p>
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(model => model.maDanhMuc, new SelectList(""), "-- chọn danh mục --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.maDanhMuc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <p class="control-label col-md-12">Vùng</p>
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(model => model.maVung, ViewBag.Vung as SelectList, "-- chọn vùng --", new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.maVung, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <p>Chọn hình</p>
+                            <input type="file" multiple="multiple" name="File1" id="File1" accept="image/*" />
+                            <br /><br />
+                            <div id="showimage">
+                                <img src="@Url.Content(Model.path)" height="150" width="150" id="showimage" style="box-shadow:2px 2px 10px gray" />
+                            </div>
+
+                            @Html.HiddenFor(model => model.maNguoiDung)
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-12">
+                                    <input type="submit" value="Tạo bài đăng" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </section>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#maChuyenMuc").change(function () {
+                var maChuyenMuc = $(this).val();
+                debugger
+                $.ajax({
+                    type: "Post",
+                    url: "/DangTin/GetDanhMuc?maChuyenMuc=" + maChuyenMuc,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#maDanhMuc").empty();
+                        $("#maDanhMuc").append(response);
+                    }
+                });
+            })
+        });
+
+    </script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#File1").change(function () {
+
+                var previewimages = $("#showimage");
+                previewimages.html("");
+                $($(this)[0].files).each(function () {
+                    var file = $(this);
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = $("<img />");
+                        img.attr("style", "height:150px;width: 150px;margin: 10px; box-shadow:2px 2px 10px gray");
+                        img.attr("src", e.target.result);
+                        previewimages.append(img);
+                    }
+                    reader.readAsDataURL(file[0]);
+                });
+
+            });
+        });
+    </script>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<style>
+    .image-upload > input {
+        display: none;
+    }
+</style>

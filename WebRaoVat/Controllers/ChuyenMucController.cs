@@ -35,5 +35,10 @@ namespace WebRaoVat.Controllers
             var dsDanhMuc = database.DanhMucs.Where(s=>s.maChuyenMuc==maChuyenMuc).ToList();
             return PartialView(dsDanhMuc);
         }
+        public PartialViewResult NavChuyenMuc()
+        {
+            var dschuyenmuc = database.ChuyenMucs.ToList();
+            return PartialView(dschuyenmuc);
+        }
     }
 }
