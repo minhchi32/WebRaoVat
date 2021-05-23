@@ -234,6 +234,7 @@
     <Content Include="Views\ChuyenMuc\DSBaiDang.cshtml" />
     <Content Include="Views\ChuyenMuc\DSDanhMuc.cshtml" />
     <Content Include="Views\DangTin\CTBaiDang.cshtml" />
+    <Content Include="Views\NguoiDung\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -244,7 +245,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\" />
-    <Folder Include="Views\NguoiDung\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
