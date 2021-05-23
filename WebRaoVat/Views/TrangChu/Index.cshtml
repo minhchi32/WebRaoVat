@@ -73,7 +73,7 @@
                     break;
                 }ii++;
                     <div class="col-6 col-md-4 col-lg-3">
-                        <div onclick="location.href='@Url.Action("CTTin", "DangTin", new { maBaiDang = item.maBaiDang })'" class="card card-hover" style="height:330px; margin-top:20px">
+                        <div onclick="location.href='@Url.Action("CTBaiDang", "DangTin", new { maBaiDang = item.maBaiDang,maChuyenMuc= item.DanhMuc.maChuyenMuc })'" class="card card-hover" style="height:330px; margin-top:20px">
                             @foreach (var i in ViewBag.Hinh)
                             {
                                 if (item.maBaiDang == i.maBaiDang)

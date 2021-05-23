@@ -31,13 +31,14 @@ namespace WebRaoVat.Controllers
                 Session["maQuyen"] = check.maQuyen;
                 Session["id"] = check.maNguoiDung;
                 ViewBag.ten = check.ten;
-                //switch (check.maQuyen)
-                //{
-                //    case 2:
-                //        return RedirectToAction("Index", "Admin");
-                //    default:
-                return RedirectToAction("Index", "TrangChu");
-                //}
+                if (check.maQuyen==2)
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "TrangChu");
+                }
             }
         }
         public ActionResult LogOutUser()
