@@ -1,0 +1,45 @@
+﻿@model WebRaoVat.Models.NguoiDung
+
+@{
+    ViewBag.Title = "ChiTietThongTinNguoiDung";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ChiTietThongTinNguoiDung</h2>
+
+<div class="container">
+    <h4>NguoiDung</h4>
+    <hr />
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ten)</th>
+                <td>@Html.DisplayFor(model => model.ten)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.SDT)</th>
+                <td>@Html.DisplayFor(model => model.SDT)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.email)</th>
+                <td>@Html.DisplayFor(model => model.email)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.username)</th>
+                <td>@Html.DisplayFor(model => model.username)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.maQuyen)</th>
+                <td>@Html.DisplayFor(model => model.Quyen.tenQuyen)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.xu)</th>
+                <td>@Html.DisplayFor(model => model.xu)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "SuaThongTinNguoiDung", new { maNguoiDung=Model.maNguoiDung }) |
+    @Html.ActionLink("Back to List", "QuanLyNguoiDung")
+</p>

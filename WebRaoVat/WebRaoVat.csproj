@@ -240,6 +240,10 @@
     <Content Include="Views\Shared\_LayoutChuyenMuc.cshtml" />
     <Content Include="Views\ChuyenMuc\NavChuyenMuc.cshtml" />
     <Content Include="Views\Shared\DanhMucOptionPartial.cshtml" />
+    <Content Include="Views\Admin\QuanLyNguoiDung.cshtml" />
+    <Content Include="Views\Admin\SuaThongTinNguoiDung.cshtml" />
+    <Content Include="Views\Admin\ChiTietThongTinNguoiDung.cshtml" />
+    <Content Include="Views\Admin\ThemNguoiDung.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
