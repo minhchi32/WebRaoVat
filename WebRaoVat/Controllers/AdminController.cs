@@ -145,7 +145,43 @@ namespace WebRaoVat.Controllers
         #endregion
 
         #region Quản lý bài đăng
+        public ActionResult QuanLyBaiDang()
+        {
+            ViewBag.Hinh = database.Hinhs.ToList();
+            return View(database.BaiDangs.ToList());
+        }
 
+        public ActionResult ThayDoiTrangThaiBaiDang(int maBaiDang)
+        {
+            var dsTTBD = database.TinhTrangBaiDangs.ToList();
+            ViewBag.DSTTBD = new SelectList(dsTTBD, "maTinhTrangBaiDang", "tenTinhTrangBaiDang");
+            var a = database.BaiDangs.Where(s => s.maBaiDang == maBaiDang).FirstOrDefault();
+            return View(a);
+        }
+        [HttpPost]
+        public ActionResult ThayDoiTrangThaiBaiDang(int maBaiDang, BaiDang baiDang)
+        {
+            var dsTTBD = database.TinhTrangBaiDangs.ToList();
+            ViewBag.DSTTBD = new SelectList(dsTTBD, "maTinhTrangBaiDang", "tenTinhTrangBaiDang");
+            if (ModelState.IsValid)
+            {
+                database.Entry(baiDang).State = System.Data.Entity.EntityState.Modified;
+                database.SaveChanges();
+                return RedirectToAction("QuanLyBaiDang");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult ChiTietBaiDang(int maBaiDang)
+        {
+            var dsTTBD = database.TinhTrangBaiDangs.ToList();
+            ViewBag.DSTTBD = new SelectList(dsTTBD, "maTinhTrangBaiDang", "tenTinhTrangBaiDang");
+            ViewBag.Hinh = database.Hinhs.Where(s => s.maBaiDang == maBaiDang).ToList();
+            ViewBag.count = ViewBag.Hinh.Count;
+            return View(database.BaiDangs.Where(s => s.maBaiDang == maBaiDang).FirstOrDefault());
+        }
         #endregion
 
 
@@ -157,9 +193,6 @@ namespace WebRaoVat.Controllers
         {
             return View();
         }
-        public ActionResult QuanLyBaiDang()
-        {
-            return View();
-        }
+        
     }
 }
