@@ -244,6 +244,10 @@
     <Content Include="Views\Admin\SuaThongTinNguoiDung.cshtml" />
     <Content Include="Views\Admin\ChiTietThongTinNguoiDung.cshtml" />
     <Content Include="Views\Admin\ThemNguoiDung.cshtml" />
+    <Content Include="Views\Admin\QuanLyPhanQuyen.cshtml" />
+    <Content Include="Views\Admin\ThemPhanQuyen.cshtml" />
+    <Content Include="Views\Admin\SuaPhanQuyen.cshtml" />
+    <Content Include="Views\Admin\XoaPhanQuyen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

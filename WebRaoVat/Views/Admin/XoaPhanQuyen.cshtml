@@ -1,0 +1,41 @@
+﻿@model WebRaoVat.Models.Quyen
+
+@{
+    ViewBag.Title = "XoaPhanQuyen";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>XoaPhanQuyen</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Quyen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.maQuyen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maQuyen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenQuyen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenQuyen)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "QuanLyPhanQuyen")
+        </div>
+    }
+</div>

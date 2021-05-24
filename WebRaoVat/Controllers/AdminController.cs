@@ -74,7 +74,64 @@ namespace WebRaoVat.Controllers
         #region Quản lý phân quyền
         public ActionResult QuanLyPhanQuyen()
         {
+            return View(database.Quyens.ToList());
+        }
+
+        public ActionResult ThemPhanQuyen()
+        {
             return View();
+        }
+        [HttpPost]
+        public ActionResult ThemPhanQuyen(Quyen quyen)
+        {
+            if (ModelState.IsValid)
+            {
+                database.Quyens.Add(quyen);
+                database.SaveChanges();
+                return RedirectToAction("QuanLyPhanQuyen");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult SuaPhanQuyen(int maQuyen)
+        {
+            return View(database.Quyens.Where(s => s.maQuyen == maQuyen).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult SuaPhanQuyen(int maQuyen, Quyen quyen)
+        {
+            if (ModelState.IsValid)
+            {
+                database.Entry(quyen).State = System.Data.Entity.EntityState.Modified;
+                database.SaveChanges();
+                return RedirectToAction("QuanLyPhanQuyen");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult XoaPhanQuyen(int maQuyen)
+        {
+            return View(database.Quyens.Where(s => s.maQuyen == maQuyen).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult XoaPhanQuyen(int maQuyen, Quyen quyen)
+        {
+            try
+            {
+
+                quyen = database.Quyens.Where(s => s.maQuyen == maQuyen).FirstOrDefault();
+                database.Quyens.Remove(quyen);
+                database.SaveChanges();
+                return RedirectToAction("QuanLyPhanQuyen");
+            }
+            catch
+            {
+                return Content("This data is using in other table, Error Delete!");
+            }
         }
 
         #endregion
