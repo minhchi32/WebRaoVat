@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="nav-main">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="@Url.Action("Index", "TrangChu")">
                                 <i class="bi bi-house-door-fill"></i>&ensp;Trang chủ
                                 <span class="sr-only">(current)</span>
                             </a>
@@ -65,12 +65,6 @@
                                     {
                                         <a class="dropdown-item" href="@Url.Action("QuanLyBaiDang","NguoiDung")">Quản lý bài đăng</a>
                                     }
-                                    @*@switch (Session["maQuyen"])
-                                    {
-                                        case 2:
-                                            <a class="dropdown-item" href="@Url.Action("Index","Admin")">Admin</a>
-                                            break;
-                                    }*@
                                     <a class="dropdown-item" href="@Url.Action("LogOutUser","NguoiDung")">Đăng xuất</a>
                                 </div>
                             }
