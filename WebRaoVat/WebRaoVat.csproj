@@ -250,6 +250,9 @@
     <Content Include="Views\Admin\XoaPhanQuyen.cshtml" />
     <Content Include="Views\Admin\QuanLyBaiDang.cshtml" />
     <Content Include="Views\Admin\ChiTietBaiDang.cshtml" />
+    <Content Include="Views\DangTin\ToiBan.cshtml" />
+    <Content Include="Views\DangTin\CTToiBan.cshtml" />
+    <Content Include="Views\DangTin\SuaBaiDang.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

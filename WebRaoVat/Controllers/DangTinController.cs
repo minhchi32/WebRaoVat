@@ -114,5 +114,41 @@ namespace WebRaoVat.Controllers
 
         }
 
+        public ActionResult ToiBan(int id)
+        {
+            var baidang = database.BaiDangs.Where(s => s.maNguoiDung == id).ToList();
+            ViewBag.Hinh = database.Hinhs.ToList();
+            ViewBag.BaiDang = baidang;
+            return View(baidang);
+        }
+        public ActionResult CTToiBan(int maBaiDang)
+        {
+            var ctBaiDang = database.BaiDangs.Where(s => s.maBaiDang == maBaiDang).FirstOrDefault();
+            ViewBag.Hinh = database.Hinhs.ToList();
+            return View(ctBaiDang);
+        }
+
+        public ActionResult SuaBaiDang(int maBaiDang)
+        {
+            var baidang = database.BaiDangs.Where(s => s.maBaiDang == maBaiDang).FirstOrDefault();
+            var dsTTSP = database.TinhTrangSanPhams.ToList();
+            ViewBag.DSTTSP = new SelectList(dsTTSP, "maTinhTrangSanPham", "tenTinhTrangSanPham");
+            ViewBag.DSChuyenMuc = new SelectList(GetChuyenMuc(), "maChuyenMuc", "tenChuyenMuc");
+
+            var vung = database.Vungs.ToList();
+            ViewBag.Vung = new SelectList(vung, "maVung", "tenVung");
+
+            ViewBag.MaNguoiDung = baidang.maNguoiDung;
+
+            ChuyenMucDanhMucViewModel CMDM = new ChuyenMucDanhMucViewModel();
+            CMDM.tieuDe = baidang.tieuDe;
+            CMDM.moTa = baidang.moTa;
+            CMDM.gia = baidang.gia;
+            CMDM.diaChi = baidang.diaChi;
+            CMDM.maTinhTrangSanPham = baidang.maTinhTrangSanPham;
+            CMDM.maVung = baidang.maVung;
+            ViewBag.BaiDang = baidang;
+            return View(CMDM);
+        }
     }
 }
