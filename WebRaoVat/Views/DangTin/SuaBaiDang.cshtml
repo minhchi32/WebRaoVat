@@ -8,13 +8,13 @@
 <div class="row">
     <div class="col-sm-12">
         <div style="position: absolute; width:90%;">
-            <h2 style="margin-left:20px; line-height:75px; color:white;">Đăng tin</h2>
+            <h2 style="margin-left:20px; line-height:75px; color:white;">Sửa tin</h2>
         </div>
         <img src="~/Content/images/top_img.jpg" id="top-img" style=" width: 100%; height: 75px; overflow:hidden" />
     </div>
 </div>
 <br />
-@using (Html.BeginForm("DangBaiDang", "DangTin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("SuaBaiDang", "DangTin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <section class="container-fluid bg">
@@ -24,6 +24,25 @@
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+                        <div class="form-group">
+                            <p>Hình</p>
+                            <div class="row">
+                                @foreach (var hinh in ViewBag.Hinh)
+                                {
+                                    @*if (hinh.maBaiDang == Model.maBaiDang)
+                                    {
+                                        <div class="col-3">
+                                            <img src="@Url.Content(hinh.path)" alt="Alternate Text" style="object-fit: contain;width:100%; height:80%" />
+                                            <a class="btn btn-danger" onclick="location.href='@Url.Action("XoaHinh","DangTin", new  { maHinh = hinh.maHinh, maBaiDang=hinh.maBaiDang})'" style="margin-top:2px; margin-left:42%"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    }*@
+                                    <div class="col-3">
+                                        <img src="@Url.Content(hinh.path)" alt="Alternate Text" style="object-fit: contain;width:100%; height:80%" />
+                                        <a class="btn btn-danger" onclick="location.href='@Url.Action("XoaHinh","DangTin", new  { maHinh = hinh.maHinh, maBaiDang=hinh.maBaiDang})'" style="margin-top:2px; margin-left:42%"><i class="bi bi-trash"></i></a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.tieuDe, htmlAttributes: new { @class = "control-label col-md-12" })
                             <div class="col-md-12">
@@ -35,7 +54,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.moTa, htmlAttributes: new { @class = "control-label col-md-12" })
                             <div class="col-md-12">
-                                @Html.TextAreaFor(model => model.moTa, 10, 40, new { @class = "form-control"})
+                                @Html.TextAreaFor(model => model.moTa, 10, 40, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.moTa, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -93,7 +112,6 @@
                                 @Html.ValidationMessageFor(model => model.maVung, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="container">
                             <p>Chọn hình</p>
                             <input type="file" multiple="multiple" name="File1" id="File1" accept="image/*" />
@@ -102,11 +120,12 @@
                                 <img src="@Url.Content(Model.path)" height="150" width="150" id="showimage" style="box-shadow:2px 2px 10px gray" />
                             </div>
 
+                            @Html.HiddenFor(model => model.maBaiDang)
                             @Html.HiddenFor(model => model.maNguoiDung)
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-12">
-                                    <input type="submit" value="Tạo bài đăng" class="btn btn-primary" />
+                                    <input type="submit" value="Sửa bài đăng" class="btn btn-primary" />
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -130,6 +131,7 @@ namespace WebRaoVat.Controllers
 
         public ActionResult SuaBaiDang(int maBaiDang)
         {
+            //ViewBag.Hinh = database.Hinhs.ToList();
             var baidang = database.BaiDangs.Where(s => s.maBaiDang == maBaiDang).FirstOrDefault();
             var dsTTSP = database.TinhTrangSanPhams.ToList();
             ViewBag.DSTTSP = new SelectList(dsTTSP, "maTinhTrangSanPham", "tenTinhTrangSanPham");
@@ -138,7 +140,16 @@ namespace WebRaoVat.Controllers
             var vung = database.Vungs.ToList();
             ViewBag.Vung = new SelectList(vung, "maVung", "tenVung");
 
-            ViewBag.MaNguoiDung = baidang.maNguoiDung;
+            var hinh = database.Hinhs.ToList();
+            List<Hinh> listhinh = new List<Hinh>();
+            foreach (var item in hinh)
+            {
+                if (item.maBaiDang == baidang.maBaiDang)
+                {
+                    listhinh.Add(item);
+                }
+            }
+            ViewBag.Hinh = listhinh;
 
             ChuyenMucDanhMucViewModel CMDM = new ChuyenMucDanhMucViewModel();
             CMDM.tieuDe = baidang.tieuDe;
@@ -147,8 +158,65 @@ namespace WebRaoVat.Controllers
             CMDM.diaChi = baidang.diaChi;
             CMDM.maTinhTrangSanPham = baidang.maTinhTrangSanPham;
             CMDM.maVung = baidang.maVung;
+            CMDM.maBaiDang = baidang.maBaiDang;
+            CMDM.maNguoiDung = baidang.maNguoiDung;
             ViewBag.BaiDang = baidang;
             return View(CMDM);
+        }
+        [HttpPost]
+        public ActionResult SuaBaiDang(ChuyenMucDanhMucViewModel model)
+        {
+            var dsTTSP = database.TinhTrangSanPhams.ToList();
+            ViewBag.DSTTSP = new SelectList(dsTTSP, "maTinhTrangSanPham", "tenTinhTrangSanPham");
+            ViewBag.DSChuyenMuc = new SelectList(GetChuyenMuc(), "maChuyenMuc", "tenChuyenMuc");
+
+            var vung = database.Vungs.ToList();
+            ViewBag.Vung = new SelectList(vung, "maVung", "tenVung");
+
+            try
+            {
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFileBase file = Request.Files[i];
+                    if (file.ContentLength > 0)
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(file.FileName);
+                        string extent = Path.GetExtension(file.FileName);
+                        filename = filename + extent;
+                        model.path = "~/Content/images/" + filename;
+                        file.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), filename));
+                        Hinh hinhs = new Hinh();
+                        hinhs.path = model.path;
+                        hinhs.maBaiDang = model.maBaiDang;
+                        database.Hinhs.Add(hinhs);
+                    }
+                }
+
+                var baid = database.BaiDangs.Where(s => s.maBaiDang == model.maBaiDang).FirstOrDefault();
+                baid.tieuDe = model.tieuDe;
+                baid.moTa = model.moTa;
+                baid.gia = model.gia;
+                baid.diaChi = model.diaChi;
+                baid.maTinhTrangSanPham = model.maTinhTrangSanPham;
+                baid.maDanhMuc = model.maDanhMuc;
+                baid.maVung = model.maVung;
+                baid.maNguoiDung = model.maNguoiDung;
+                database.Entry(baid).State = EntityState.Modified;
+                database.SaveChanges();
+
+                return RedirectToAction("ToiBan", "DangTin",new { id=model.maNguoiDung});
+            }
+            catch
+            {
+                return View("SuaBaiDang", model);
+            }
+        }
+        public ActionResult XoaHinh(int maHinh, int maBaiDang)
+        {
+            var Hinh = database.Hinhs.Where(s => s.maHinh == maHinh).FirstOrDefault();        
+            database.Hinhs.Remove(Hinh);
+            database.SaveChanges();
+            return RedirectToAction("SuaBaiDang", "DangTin", new { maBaiDang = maBaiDang });
         }
     }
 }
