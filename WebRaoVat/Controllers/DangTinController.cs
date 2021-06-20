@@ -22,6 +22,9 @@ namespace WebRaoVat.Controllers
             ViewBag.ChuyenMuc = database.ChuyenMucs.ToList();
             var ctBaiDang = database.BaiDangs.Where(s => s.maBaiDang == maBaiDang).FirstOrDefault();
             ViewBag.Hinh = database.Hinhs.ToList();
+            ctBaiDang.luotXem += 1;
+            database.Entry(ctBaiDang).State = EntityState.Modified;
+            database.SaveChanges();
             //ViewBag.BaiDang = database.BaiDangs.Where(s => s.maDanhMuc == maDanhMuc).FirstOrDefault();
             return View(ctBaiDang);
         }

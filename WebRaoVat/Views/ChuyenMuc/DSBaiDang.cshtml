@@ -30,27 +30,28 @@ else
                                 break;
                             }
                         }
-                        <div class="card-body" style="width: 100%">
-                            @if (item.tieuDe.ToString().Length > 44)
-                            {
-                                <p class="card-text">
-                                    @item.tieuDe.ToString().Substring(0, 44) ...
-                                </p>
-                            }
-                            else
-                            {
-                                <p class="card-text"> @item.tieuDe</p>
+                    <div class="card-body" style="width: 100%">
+                        @if (item.tieuDe.ToString().Length > 44)
+                        {
+                            <p class="card-text">
+                                @item.tieuDe.ToString().Substring(0, 44) ...
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text"> @item.tieuDe</p>
 
-                            }
-                            @if (@item.gia.ToString().Length > 10)
-                            {
-                                <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
-                            }
-                            else
-                            {
-                                <p>@item.gia VNĐ</p>
-                            }
-                        </div>
+                        }
+                        @if (@item.gia.ToString().Length > 10)
+                        {
+                            <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
+                        }
+                        else
+                        {
+                            <p>@item.gia VNĐ</p>
+                            <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
+                        }
+                    </div>
                     </div>
                 </div>
             }
