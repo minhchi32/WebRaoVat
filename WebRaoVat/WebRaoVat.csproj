@@ -253,6 +253,7 @@
     <Content Include="Views\DangTin\ToiBan.cshtml" />
     <Content Include="Views\DangTin\CTToiBan.cshtml" />
     <Content Include="Views\DangTin\SuaBaiDang.cshtml" />
+    <Content Include="Views\NguoiDung\RegisterUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

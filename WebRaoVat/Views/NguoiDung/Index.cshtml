@@ -29,10 +29,12 @@
                             <p>@ViewBag.ErrorInfo</p>
                         }
                     </div>
-                    <button type="submit" value="Login" class="btn btn-primary btn-block" style="padding: 10px;"><b>Đăng nhập</b></button>
+                    <button type="submit" value="Login" class="btn btn-danger btn-block" style="padding: 10px;"><b>Đăng nhập</b></button>
+                    <input value="Trở về" class="btn btn-primary btn-block" type="button" style="padding: 10px;" onclick="location.href='@Url.Action("Index", "TrangChu")'" />
                     <hr>
                     <div class="form-group">
-                        <p style="float: left;">Bạn chưa có tài khoản? <a href="@Url.Action("RegisterUser", "LoginUser")" class="card-link">Đăng ký ngay</a></p>
+                        <p style="float: left;">Bạn chưa có tài khoản? <a href="@Url.Action("RegisterUser", "NguoiDung")" class="card-link">Đăng ký ngay</a></p>
+
                     </div>
                     <br>
                 </form>

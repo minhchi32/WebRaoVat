@@ -51,5 +51,34 @@ namespace WebRaoVat.Controllers
         {
             return View(database.NguoiDungs.Where(s => s.maNguoiDung == id).FirstOrDefault());
         }
+
+        public ActionResult RegisterUser()
+        {
+            NguoiDung nguoidung = new NguoiDung();
+            return View(nguoidung);
+        }
+
+        [HttpPost]
+        public ActionResult RegisterUser(NguoiDung _user)
+        {
+            var check_ID = database.NguoiDungs.Where(s => s.username == _user.username).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                if (check_ID == null)
+                {
+                    database.Configuration.ValidateOnSaveEnabled = false;
+                    _user.maQuyen = 1;
+                    database.NguoiDungs.Add(_user);
+                    database.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.ErrorRegister = "This ID is exixst";
+                    return View();
+                }
+            }
+            return View();
+        }
     }
 }
