@@ -30,12 +30,12 @@
                                 @foreach (var hinh in ViewBag.Hinh)
                                 {
                                     @*if (hinh.maBaiDang == Model.maBaiDang)
-                                    {
-                                        <div class="col-3">
-                                            <img src="@Url.Content(hinh.path)" alt="Alternate Text" style="object-fit: contain;width:100%; height:80%" />
-                                            <a class="btn btn-danger" onclick="location.href='@Url.Action("XoaHinh","DangTin", new  { maHinh = hinh.maHinh, maBaiDang=hinh.maBaiDang})'" style="margin-top:2px; margin-left:42%"><i class="bi bi-trash"></i></a>
-                                        </div>
-                                    }*@
+                                        {
+                                            <div class="col-3">
+                                                <img src="@Url.Content(hinh.path)" alt="Alternate Text" style="object-fit: contain;width:100%; height:80%" />
+                                                <a class="btn btn-danger" onclick="location.href='@Url.Action("XoaHinh","DangTin", new  { maHinh = hinh.maHinh, maBaiDang=hinh.maBaiDang})'" style="margin-top:2px; margin-left:42%"><i class="bi bi-trash"></i></a>
+                                            </div>
+                                        }*@
                                     <div class="col-3">
                                         <img src="@Url.Content(hinh.path)" alt="Alternate Text" style="object-fit: contain;width:100%; height:80%" />
                                         <a class="btn btn-danger" onclick="location.href='@Url.Action("XoaHinh","DangTin", new  { maHinh = hinh.maHinh, maBaiDang=hinh.maBaiDang})'" style="margin-top:2px; margin-left:42%"><i class="bi bi-trash"></i></a>
@@ -67,11 +67,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="searchBoxContainer">
                             @Html.LabelFor(model => model.diaChi, htmlAttributes: new { @class = "control-label col-md-12" })
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control col-md-11", @id = "searchBox", autocomplete = "off", @style = "height:24px;" } })
                                 @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
+                                <div id="myMap" style="width:0px; height:0px"></div>
                             </div>
                         </div>
 
@@ -190,3 +191,33 @@
         display: none;
     }
 </style>
+
+
+
+<script type="text/javascript">
+    function loadMapScenario() {
+        var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        });
+        Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', function () {
+            var options = {
+                maxResults: 4,
+                map: map
+            };
+            var manager = new Microsoft.Maps.AutosuggestManager(options);
+            manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
+        });
+        function selectedSuggestion(suggestionResult) {
+            map.entities.clear();
+            map.setView({ bounds: suggestionResult.bestView });
+            var pushpin = new Microsoft.Maps.Pushpin(suggestionResult.location);
+            map.entities.push(pushpin);
+            //document.getElementById("Lat").value = suggestionResult.location.latitude;
+            //document.getElementById("Long").value = suggestionResult.location.longitude;
+            /*myFunction();*/
+        }
+
+    }
+</script>
+<script type="text/javascript"
+        src="https://www.bing.com/api/maps/mapcontrol?key=AlWZDq2sroFFxZY_F07mSh9kBax_r79ULOoLeOpc3ded1jIxnS36O-UJQXQ7dWHe&callback=loadMapScenario"
+        async defer></script>

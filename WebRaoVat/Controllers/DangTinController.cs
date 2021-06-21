@@ -104,7 +104,8 @@ namespace WebRaoVat.Controllers
                 baid.maDanhMuc = model.maDanhMuc;
                 baid.maVung = model.maVung;
                 baid.maNguoiDung = model.maNguoiDung;
-
+                baid.maGiaoDich = 1;
+                baid.luotXem = 0;
                 database.BaiDangs.Add(baid);
                 database.SaveChanges();
 

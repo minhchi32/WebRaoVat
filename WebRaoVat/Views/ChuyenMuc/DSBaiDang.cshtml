@@ -45,6 +45,7 @@ else
                         @if (@item.gia.ToString().Length > 10)
                         {
                             <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
+                            <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
                         }
                         else
                         {
