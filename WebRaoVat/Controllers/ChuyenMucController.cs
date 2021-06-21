@@ -20,7 +20,7 @@ namespace WebRaoVat.Controllers
             ViewBag.ChuyenMuc = database.ChuyenMucs.ToList();
             var dsTin = database.BaiDangs.Where(s => s.maDanhMuc == maDanhMuc).ToList();
             ViewBag.Hinh = database.Hinhs.ToList();
-            ViewBag.BaiDang = database.BaiDangs.Where(s => s.maDanhMuc == maDanhMuc && s.maLoaiBaiDang==2).FirstOrDefault();
+            ViewBag.BaiDang = database.BaiDangs.Where(s => s.maDanhMuc == maDanhMuc && s.maTinhTrangBaiDang==2).FirstOrDefault();
             return View(dsTin);
         }
         public ActionResult DSDanhMuc(int maChuyenMuc)
