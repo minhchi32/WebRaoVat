@@ -5,40 +5,52 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>SuaChuyenMuc</h2>
+<h2>Sửa chuyên mục</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>ChuyenMuc</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tenChuyenMuc, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tenChuyenMuc, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tenChuyenMuc, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.hinhChuyenMuc, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.hinhChuyenMuc, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.hinhChuyenMuc, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.tenChuyenMuc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tenChuyenMuc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tenChuyenMuc, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.hinhChuyenMuc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hinhChuyenMuc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hinhChuyenMuc, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+    @*<div class="form-group">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" value="Create product" class="btn btn-success" />
+            <input value="Back" class="btn btn-primary" onclick="location.href='@Url.Action("ProductsManagement", "Admin")'" />
+            @Html.Raw(TempData["msgError"])
+        </div>
+    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.hinhChuyenMuc, htmlAttributes: new { @class = "control-label col-md-12" })
+
+        <div class="col-md-12">
+            <img src="@Url.Content(Model.hinhChuyenMuc)" height="150" width="150" id="previewImg" />
+            <input type="file" name="UploadImage" onchange="ChangeImage(this,document.getElementById('previewImg'))" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
@@ -48,3 +60,15 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    function ChangeImage(UploadImage, previewImg) {
+        if (UploadImage.files && UploadImage.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(previewImg).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(UploadImage.files[0]);
+        }
+    }
+</script>

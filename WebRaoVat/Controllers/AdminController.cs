@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -144,11 +145,20 @@ namespace WebRaoVat.Controllers
 
         public ActionResult ThemChuyenMuc()
         {
-            return View();
+            ChuyenMuc chuyemuc = new ChuyenMuc();
+            return View(chuyemuc);
         }
         [HttpPost]
         public ActionResult ThemChuyenMuc(ChuyenMuc chuyenMuc)
         {
+            if (chuyenMuc.UploadImage != null)
+            {
+                string filename = Path.GetFileNameWithoutExtension(chuyenMuc.UploadImage.FileName);
+                string extent = Path.GetExtension(chuyenMuc.UploadImage.FileName);
+                filename = filename + extent;
+                chuyenMuc.hinhChuyenMuc = "~/Content/images/" + filename;
+                chuyenMuc.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Images/"), filename));
+            }
             if (ModelState.IsValid)
             {
                 database.ChuyenMucs.Add(chuyenMuc);
@@ -167,6 +177,19 @@ namespace WebRaoVat.Controllers
         [HttpPost]
         public ActionResult SuaChuyenMuc(int maChuyenMuc, ChuyenMuc chuyenMuc)
         {
+            var a = chuyenMuc.UploadImage;
+            if (chuyenMuc.UploadImage != null)
+            {
+                string filename = Path.GetFileNameWithoutExtension(chuyenMuc.UploadImage.FileName);
+                string extent = Path.GetExtension(chuyenMuc.UploadImage.FileName);
+                filename = filename + extent;
+                var path = "~/Content/images/" + filename;
+                if (path != "~/Content/images/img_default.png")
+                {
+                    chuyenMuc.hinhChuyenMuc = path;
+                    chuyenMuc.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), filename));
+                }
+            }
             if (ModelState.IsValid)
             {
                 database.Entry(chuyenMuc).State = System.Data.Entity.EntityState.Modified;
