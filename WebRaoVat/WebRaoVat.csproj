@@ -256,6 +256,14 @@
     <Content Include="Views\NguoiDung\XemThongTinCaNhan.cshtml" />
     <Content Include="Views\NguoiDung\QuanLyBaiDang.cshtml" />
     <Content Include="Views\NguoiDung\RegisterUser.cshtml" />
+    <Content Include="Views\Admin\QuanLyChuyenMuc.cshtml" />
+    <Content Include="Views\Admin\ThemChuyenMuc.cshtml" />
+    <Content Include="Views\Admin\SuaChuyenMuc.cshtml" />
+    <Content Include="Views\Admin\XoaChuyenMuc.cshtml" />
+    <Content Include="Views\Admin\QuanLyDanhMuc.cshtml" />
+    <Content Include="Views\Admin\ThemDanhMuc.cshtml" />
+    <Content Include="Views\Admin\SuaDanhMuc.cshtml" />
+    <Content Include="Views\Admin\XoaDanhMuc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

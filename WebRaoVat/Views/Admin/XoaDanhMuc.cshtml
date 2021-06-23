@@ -1,0 +1,57 @@
+﻿@model WebRaoVat.Models.DanhMuc
+
+@{
+    ViewBag.Title = "XoaDanhMuc";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>XoaDanhMuc</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DanhMuc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.maDanhMuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maDanhMuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenDanhMuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenDanhMuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChuyenMuc.tenChuyenMuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuyenMuc.tenChuyenMuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soLuongBai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soLuongBai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "QuanLyDanhMuc")
+        </div>
+    }
+</div>

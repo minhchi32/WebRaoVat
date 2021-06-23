@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebRaoVat.Models.DanhMuc>
+
+@{
+    ViewBag.Title = "QuanLyDanhMuc";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h2>Quản lý danh mục</h2>
+
+<button class="btn btn-primary" onclick="location.href='@Url.Action("ThemDanhMuc", "Admin")'">Thêm danh mục</button>
+<br />
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>
+            Mã danh mục
+        </th>
+        <th>
+            Tên danh mục
+        </th>
+        <th>
+            Tên chuyên mục
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.maDanhMuc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenDanhMuc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ChuyenMuc.tenChuyenMuc)
+    </td>
+    <td>
+        <i class="bi bi-pencil-square" onclick="location.href='@Url.Action("SuaDanhMuc", "Admin", new { maDanhMuc = item.maDanhMuc })'" style="cursor:pointer; color:green" title="sửa"></i> |
+        <i class="bi bi-trash" onclick="location.href='@Url.Action("XoaDanhMuc", "Admin", new { maDanhMuc = item.maDanhMuc })'" style="cursor:pointer; color:red" title="xóa"></i>
+    </td>
+</tr>
+    }
+
+</table>

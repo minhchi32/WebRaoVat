@@ -137,11 +137,139 @@ namespace WebRaoVat.Controllers
         #endregion
 
         #region Quản lý chuyên mục
+        public ActionResult QuanLyChuyenMuc()
+        {
+            return View(database.ChuyenMucs.ToList());
+        }
 
+        public ActionResult ThemChuyenMuc()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ThemChuyenMuc(ChuyenMuc chuyenMuc)
+        {
+            if (ModelState.IsValid)
+            {
+                database.ChuyenMucs.Add(chuyenMuc);
+                database.SaveChanges();
+                return RedirectToAction("QuanLyChuyenMuc");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult SuaChuyenMuc(int maChuyenMuc)
+        {
+            return View(database.ChuyenMucs.Where(s => s.maChuyenMuc == maChuyenMuc).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult SuaChuyenMuc(int maChuyenMuc, ChuyenMuc chuyenMuc)
+        {
+            if (ModelState.IsValid)
+            {
+                database.Entry(chuyenMuc).State = System.Data.Entity.EntityState.Modified;
+                database.SaveChanges();
+                return RedirectToAction("QuanLyChuyenMuc");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult XoaChuyenMuc(int maChuyenMuc)
+        {
+            return View(database.ChuyenMucs.Where(s => s.maChuyenMuc == maChuyenMuc).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult XoaChuyenMuc(int maChuyenMuc, ChuyenMuc chuyenMuc)
+        {
+            try
+            {
+
+                chuyenMuc = database.ChuyenMucs.Where(s => s.maChuyenMuc == maChuyenMuc).FirstOrDefault();
+                database.ChuyenMucs.Remove(chuyenMuc);
+                database.SaveChanges();
+                return RedirectToAction("QuanLyChuyenMuc");
+            }
+            catch
+            {
+                return Content("This data is using in other table, Error Delete!");
+            }
+        }
         #endregion
 
         #region Quản lý danh mục
+        public ActionResult QuanLyDanhMuc()
+        {
+            return View(database.DanhMucs.ToList());
+        }
+        public ActionResult ThemDanhMuc()
+        {
+            var dsChuyenMuc = database.ChuyenMucs.ToList();
+            ViewBag.DsChuyenMuc = new SelectList(dsChuyenMuc, "maChuyenMuc", "tenChuyenMuc");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ThemDanhMuc(DanhMuc danhMuc)
+        {
+            danhMuc.soLuongBai = 0;
+            var dsChuyenMuc = database.ChuyenMucs.ToList();
+            ViewBag.DsChuyenMuc = new SelectList(dsChuyenMuc, "maChuyenMuc", "tenChuyenMuc");
+            if (ModelState.IsValid)
+            {
+                database.DanhMucs.Add(danhMuc);
+                database.SaveChanges();
+                return RedirectToAction("QuanLyDanhMuc");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult SuaDanhMuc(int maDanhMuc)
+        {
+            var dsChuyenMuc = database.ChuyenMucs.ToList();
+            ViewBag.DsChuyenMuc = new SelectList(dsChuyenMuc, "maChuyenMuc", "tenChuyenMuc");
+            return View(database.DanhMucs.Where(s => s.maDanhMuc == maDanhMuc).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult SuaDanhMuc(int maDanhMuc, DanhMuc danhMuc)
+        {
+            var dsChuyenMuc = database.ChuyenMucs.ToList();
+            ViewBag.DsChuyenMuc = new SelectList(dsChuyenMuc, "maChuyenMuc", "tenChuyenMuc");
+            if (ModelState.IsValid)
+            {
+                database.Entry(danhMuc).State = System.Data.Entity.EntityState.Modified;
+                database.SaveChanges();
+                return RedirectToAction("QuanLyDanhMuc");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult XoaDanhMuc(int maDanhMuc)
+        {
+            return View(database.DanhMucs.Where(s => s.maDanhMuc == maDanhMuc).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult XoaDanhMuc(int maDanhMuc, DanhMuc danhMuc)
+        {
+            try
+            {
 
+                danhMuc = database.DanhMucs.Where(s => s.maDanhMuc == maDanhMuc).FirstOrDefault();
+                database.DanhMucs.Remove(danhMuc);
+                database.SaveChanges();
+                return RedirectToAction("QuanLyDanhMuc");
+            }
+            catch
+            {
+                return Content("This data is using in other table, Error Delete!");
+            }
+        }
         #endregion
 
         #region Quản lý bài đăng
@@ -185,14 +313,8 @@ namespace WebRaoVat.Controllers
         #endregion
 
 
-        public ActionResult QuanLyChuyenMuc()
-        {
-            return View();
-        }
-        public ActionResult QuanLyDanhMuc()
-        {
-            return View();
-        }
+        
+        
         
     }
 }
