@@ -27,20 +27,30 @@ namespace WebRaoVat.Models
     
         public int maNguoiDung { get; set; }
         public int maQuyen { get; set; }
+        [Display(Name = "Tên người dùng")]
+        [Required(ErrorMessage = "Tên người dùng không được bỏ trống")]
+        [StringLength(100, MinimumLength = 5)]
         public string ten { get; set; }
+        [Display(Name = "Nhập tài khoản")]
+        [Required(ErrorMessage = "Tài khoản không được bỏ trống")]
         public string username { get; set; }
-
-        [Display(Name = "Mật khẩu")]
-        [Required(ErrorMessage = "Can not empty")]
+        [Display(Name = "Nhập mật khẩu")]
+        [Required(ErrorMessage = "Mật khẩu không được bỏ trống")]
         [DataType(DataType.Password)]
         public string password { get; set; }
-
         [NotMapped]
-        [Compare("password")]
-        [DataType(DataType.Password)]
+        [Compare("Password")]
         [Display(Name = "Nhập lại mật khẩu")]
+        [Required(ErrorMessage = "Mật khẩu không trùng khớp")]
+        [DataType(DataType.Password)]
         public string ConfirmPass { get; set; }
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email không được bỏ trống")]
+        [StringLength(100, MinimumLength = 10)]
         public string email { get; set; }
+        [Display(Name = "Số điện thoại")]
+        [Required(ErrorMessage = "Số điện thoại không được bỏ trống")]
+        [StringLength(15, MinimumLength = 9)]
         public string SDT { get; set; }
         public int xu { get; set; }
         public Nullable<double> slRate { get; set; }
