@@ -98,7 +98,7 @@
         {
 
             <div class="col-6 col-md-4 col-lg-3">
-                <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("ChiTietBaiDang", "Admin", new { maBaiDang = item.maBaiDang })'">
+                <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTToiBan", "DangTin", new { maBaiDang = item.maBaiDang })'">
                     @foreach (var i in ViewBag.Hinh)
                     {
                         if (item.maBaiDang == i.maBaiDang)
@@ -133,3 +133,15 @@
         }
     }
 }
+<style>
+    .card-hover:hover {
+        background-color: white;
+        color: black;
+        box-shadow: 3px 2px 10px gray;
+        cursor: pointer;
+    }
+
+    .card-text {
+        color: gray;
+    }
+</style>
