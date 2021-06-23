@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "QuanLyBaiDang";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Quản lý bài đăng</h2>
@@ -24,6 +24,11 @@
                 <li class="nav-item">
                     <a class="nav-link" id="tab-da-duyet" data-toggle="tab" href="#bai-dang-da-duyet" role="tab" aria-controls="bai-dang-da-duyet" aria-selected="false">
                         Bài đăng đã duyệt
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab-da-an" data-toggle="tab" href="#bai-dang-da-an" role="tab" aria-controls="bai-dang-da-an" aria-selected="false">
+                        Bài đăng đã ẩn
                     </a>
                 </li>
             </ul>
@@ -62,6 +67,19 @@
                         <div class="row" style="margin:10px">
 
                             @showPost(2)
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="bai-dang-da-an" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-tab-da-an">
+                <div class="container">
+                    <div style="background-color: white; padding: 10px; height:100%; width:100%">
+                        <div class="row" style="margin:10px">
+
+                            @showPost(4)
 
                         </div>
                     </div>

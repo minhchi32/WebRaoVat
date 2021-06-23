@@ -1,0 +1,158 @@
+﻿@model WebRaoVat.Models.NguoiDung
+
+@{
+    ViewBag.Title = "XemThongTinCaNhan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div>
+    <hr />
+    <section class="container-fluid" style="height:100%">
+        <section class="row justify-content-center">
+            <section class="col-12 col-sm-8 col-md-4 form-container">
+                <h2>Thông tin cá nhân</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ten)</th>
+                            <td>@Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.SDT)</th>
+                            <td>@Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.xu)</th>
+                            <td>@Html.DisplayFor(model => model.xu, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            @Html.ValidationMessageFor(model => model.xu, "", new { @class = "text-danger" })
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.email)</th>
+                            <td>@Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.username)</th>
+                            <td>@Html.DisplayFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.password)</th>
+                            <td>@Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ConfirmPass)</th>
+                            <td>@Html.EditorFor(model => model.ConfirmPass, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            @Html.ValidationMessageFor(model => model.ConfirmPass, "", new { @class = "text-danger" })
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <input type="submit" value="Cập nhật thông tin" class="btn btn-primary" disabled />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </section>
+</div>
+
+
+<div>
+    <h4>NguoiDung</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.maNguoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maNguoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maQuyen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maQuyen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.xu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.xu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.slRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.slRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tongRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tongRate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

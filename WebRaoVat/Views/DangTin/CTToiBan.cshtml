@@ -117,7 +117,7 @@
         <div class="col-md-5" style="margin-top:20px">
             <h3>@Model.tieuDe</h3>
             <p>Đăng lúc: @Model.ngayDang.Day/@Model.ngayDang.Month/@Model.ngayDang.Year</p>
-            <p style="font-weight:bold;color:orange; font-size:1.3em">Giá bán: @Model.gia VNĐ</p>
+            <p style="font-weight:bold;color:orange; font-size:1.3em">Giá bán: @String.Format("{0:0,0 VNĐ}", Model.gia)</p>
 
             <div class="container" style="border:1px solid gray; width:100%; border-radius:10px">
                 <div class="row" style="background-color:#F8F8F8; border-radius:10px;">

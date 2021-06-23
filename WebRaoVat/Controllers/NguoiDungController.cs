@@ -27,11 +27,12 @@ namespace WebRaoVat.Controllers
             else
             {
                 database.Configuration.ValidateOnSaveEnabled = false;
+                Session["NguoiDung"] = check.ten;
                 Session["ten"] = check.ten;
                 Session["maQuyen"] = check.maQuyen;
                 Session["id"] = check.maNguoiDung;
                 ViewBag.ten = check.ten;
-                if (check.maQuyen==2)
+                if (check.maQuyen == 2)
                 {
                     return RedirectToAction("Index", "Admin");
                 }
@@ -50,6 +51,11 @@ namespace WebRaoVat.Controllers
         public ActionResult XemThongTinCaNhan(int id)
         {
             return View(database.NguoiDungs.Where(s => s.maNguoiDung == id).FirstOrDefault());
+        }
+        public ActionResult QuanLyBaiDang(int id)
+        {
+            ViewBag.Hinh = database.Hinhs.ToList();
+            return View(database.BaiDangs.Where(s => s.maNguoiDung == id).ToList());
         }
     }
 }

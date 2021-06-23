@@ -101,7 +101,8 @@
                             }
                             else
                             {
-                                <p>@item.gia VNĐ</p>
+                        <p>@String.Format("{0:0,0 VNĐ}", item.gia)</p>
+                                
                                 <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
                             }
                         </div>
