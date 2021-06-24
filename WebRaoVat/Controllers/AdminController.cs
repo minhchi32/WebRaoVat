@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebRaoVat.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WebRaoVat.Controllers
 {
@@ -17,9 +19,12 @@ namespace WebRaoVat.Controllers
             return View();
         }
         #region Quản lý người dùng
-        public ActionResult QuanLyNguoiDung()
+        public ActionResult QuanLyNguoiDung(int? page)
         {
-            return View(database.NguoiDungs.ToList());
+            int pageSize = 25;
+            int pageNum = (page ?? 1);
+            var dsNguoiDung = database.NguoiDungs.ToList();
+            return View(dsNguoiDung.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult ThemNguoiDung()
@@ -296,10 +301,13 @@ namespace WebRaoVat.Controllers
         #endregion
 
         #region Quản lý bài đăng
-        public ActionResult QuanLyBaiDang()
+        public ActionResult QuanLyBaiDang(/*int? page*/)
         {
+            //int pageSize = 12;
+            //int pageNum = (page ?? 1);
             ViewBag.Hinh = database.Hinhs.ToList();
-            return View(database.BaiDangs.ToList());
+            var dsBaiDang = database.BaiDangs.ToList();
+            return View(dsBaiDang/*.ToPagedList(pageNum, pageSize)*/);
         }
 
         public ActionResult ThayDoiTrangThaiBaiDang(int maBaiDang)

@@ -1,10 +1,12 @@
-﻿@model IEnumerable<WebRaoVat.Models.BaiDang>
-
+﻿@*@model IEnumerable<WebRaoVat.Models.BaiDang>*@
+@using WebRaoVat.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<BaiDang>
 @{
     ViewBag.Title = "QuanLyBaiDang";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 <h2>Quản lý bài đăng</h2>
 <div>
 
@@ -114,6 +116,10 @@
             </div>
         }
     }
+
+    @*<div class="MenuPage">
+        @Html.PagedListPager(Model, page => Url.Action("QuanLyBaiDang", new { page = page }))
+    </div>*@
 }
 
 <style>

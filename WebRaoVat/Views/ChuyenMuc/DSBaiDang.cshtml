@@ -1,10 +1,12 @@
-﻿@model IEnumerable<WebRaoVat.Models.BaiDang>
-
+﻿@*@model IEnumerable<WebRaoVat.Models.BaiDang>*@
+@using WebRaoVat.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<BaiDang>
 @{
     ViewBag.Title = "DSBaiDang";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
-
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 @if (@ViewBag.BaiDang == null)
 {
     <div style="background-color: white; padding: 10px; height:100%; width:100%">
@@ -14,50 +16,53 @@
 else
 {
 
-    <div style="background-color: white; padding: 10px; height:100%; width:100%">
-        <h3>@ViewBag.BaiDang.DanhMuc.tenDanhMuc</h3>
-        <div class="row" style="margin:10px">
+<div style="background-color: white; padding: 10px; height:100%; width:100%">
+    <h3>@ViewBag.BaiDang.DanhMuc.tenDanhMuc</h3>
+    <div class="row" style="margin:10px">
 
-            @foreach (var item in Model)
-            {
-                <div class="col-6 col-md-4 col-lg-4">
-                    <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTBaiDang", "DangTin", new { maBaiDang = item.maBaiDang,maChuyenMuc=item.DanhMuc.maChuyenMuc })'">
-                        @foreach (var i in ViewBag.Hinh)
+        @foreach (var item in Model)
+        {
+            <div class="col-6 col-md-4 col-lg-4">
+                <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTBaiDang", "DangTin", new { maBaiDang = item.maBaiDang,maChuyenMuc=item.DanhMuc.maChuyenMuc })'">
+                    @foreach (var i in ViewBag.Hinh)
+                    {
+                        if (item.maBaiDang == i.maBaiDang)
                         {
-                            if (item.maBaiDang == i.maBaiDang)
-                            {
-                                <img src="@Url.Content(i.path)" alt="Alternate Text" style="height:55%; overflow:hidden" />
-                                break;
-                            }
+                            <img src="@Url.Content(i.path)" alt="Alternate Text" style="height:55%; overflow:hidden" />
+                            break;
                         }
-                        <div class="card-body" style="width: 100%">
-                            @if (item.tieuDe.ToString().Length > 44)
-                            {
-                                <p class="card-text">
-                                    @item.tieuDe.ToString().Substring(0, 44) ...
-                                </p>
-                            }
-                            else
-                            {
-                                <p class="card-text"> @item.tieuDe</p>
+                    }
+                    <div class="card-body" style="width: 100%">
+                        @if (item.tieuDe.ToString().Length > 44)
+                        {
+                            <p class="card-text">
+                                @item.tieuDe.ToString().Substring(0, 44) ...
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text"> @item.tieuDe</p>
 
-                            }
-                            @if (@item.gia.ToString().Length > 10)
-                            {
-                                <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
-                                <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
-                            }
-                            else
-                            {
-                                <p>@String.Format("{0:0,0 VNĐ}", item.gia)</p>
-                                <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
-                            }
-                        </div>
+                        }
+                        @if (@item.gia.ToString().Length > 10)
+                        {
+                            <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
+                            <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
+                        }
+                        else
+                        {
+                            <p>@String.Format("{0:0,0 VNĐ}", item.gia)</p>
+                            <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
+                        }
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
+    <div class="MenuPage">
+        @Html.PagedListPager(Model, page => Url.Action("DSBaiDang", new { page = page }))
+    </div>
+</div>
 }
 <style>
     .card-hover:hover {
@@ -71,3 +76,4 @@ else
         color: gray;
     }
 </style>
+
