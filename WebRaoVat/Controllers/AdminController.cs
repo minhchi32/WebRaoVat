@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebRaoVat.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WebRaoVat.Controllers
 {
@@ -17,9 +19,12 @@ namespace WebRaoVat.Controllers
             return View();
         }
         #region Quản lý người dùng
-        public ActionResult QuanLyNguoiDung()
+        public ActionResult QuanLyNguoiDung(int? page)
         {
-            return View(database.NguoiDungs.ToList());
+            int pageSize = 25;
+            int pageNum = (page ?? 1);
+            var dsNguoiDung = database.NguoiDungs.ToList();
+            return View(dsNguoiDung.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult ThemNguoiDung()

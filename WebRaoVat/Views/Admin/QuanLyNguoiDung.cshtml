@@ -1,12 +1,14 @@
-﻿@model IEnumerable<WebRaoVat.Models.NguoiDung>
-
+﻿@*@model IEnumerable<WebRaoVat.Models.NguoiDung>*@
+@using WebRaoVat.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<NguoiDung>
 @{
     ViewBag.Title = "QuanLyNguoiDung";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Quản lý người dùng</h2>
-
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 <button class="btn btn-primary" onclick="location.href='@Url.Action("ThemNguoiDung", "Admin")'">Thêm tài khoản</button>
 <br />
 <br />
@@ -58,9 +60,12 @@
             </td>
             <td>
                 <i class="bi bi-arrow-90deg-right" onclick="location.href='@Url.Action("ChiTietThongTinNguoiDung", "Admin", new { maNguoiDung = item.maNguoiDung })'" style="cursor:pointer; color:blue" title="chi tiết"></i> |
-                <i class="bi bi-pencil-square" onclick="location.href='@Url.Action("SuaThongTinNguoiDung", "Admin", new { maNguoiDung = item.maNguoiDung })'" style="cursor:pointer; color:green" title="sửa"></i> 
+                <i class="bi bi-pencil-square" onclick="location.href='@Url.Action("SuaThongTinNguoiDung", "Admin", new { maNguoiDung = item.maNguoiDung })'" style="cursor:pointer; color:green" title="sửa"></i>
             </td>
         </tr>
     }
-
 </table>
+
+<div class="MenuPage">
+    @Html.PagedListPager(Model, page => Url.Action("QuanLyNguoiDung", new { page = page }))
+</div>

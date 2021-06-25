@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebRaoVat.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WebRaoVat.Controllers
 {
@@ -15,13 +17,15 @@ namespace WebRaoVat.Controllers
         {
             return View();
         }
-        public ActionResult DSBaiDang(int maDanhMuc,int maChuyenMuc)
+        public ActionResult DSBaiDang(int maDanhMuc,int maChuyenMuc,int? page)
         {
+            int pageSize = 12;
+            int pageNum = (page ?? 1);
             ViewBag.ChuyenMuc = database.ChuyenMucs.ToList();
             var dsTin = database.BaiDangs.Where(s => s.maDanhMuc == maDanhMuc).ToList();
             ViewBag.Hinh = database.Hinhs.ToList();
             ViewBag.BaiDang = database.BaiDangs.Where(s => s.maDanhMuc == maDanhMuc && s.maTinhTrangBaiDang==2).FirstOrDefault();
-            return View(dsTin);
+            return View(dsTin.ToPagedList(pageNum,pageSize));
         }
         public ActionResult DSDanhMuc(int maChuyenMuc)
         {
