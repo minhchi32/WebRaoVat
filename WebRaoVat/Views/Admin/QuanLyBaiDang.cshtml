@@ -129,13 +129,13 @@
             <a href="@Url.Action("QuanLyBaiDang","Admin",new {maTrangThai=2})" class="btn btn-primary">Bài đăng đã duyệt</a>
         </div>
     </div>
-        <br />
-        <h2>@ViewBag.TrangThaiBD</h2>
+    <br />
+    <h2>@ViewBag.TrangThaiBD</h2>
     <div class="row">
         @foreach (var item in Model)
         {
             <div class="col-6 col-md-3 col-lg-3">
-                <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTBaiDang", "DangTin", new { maBaiDang = item.maBaiDang,maChuyenMuc=item.DanhMuc.maChuyenMuc })'">
+                <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("ChiTietBaiDang", "Admin", new { maBaiDang = item.maBaiDang })'">
                     @foreach (var i in ViewBag.Hinh)
                     {
                         if (item.maBaiDang == i.maBaiDang)
@@ -170,6 +170,9 @@
                 </div>
             </div>
         }
+    </div>
+    <div class="MenuPage">
+        @Html.PagedListPager(Model, page => Url.Action("QuanLyBaiDang", new { page = page }))
     </div>
 </div>
 <style>

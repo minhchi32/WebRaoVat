@@ -301,8 +301,10 @@ namespace WebRaoVat.Controllers
         #endregion
 
         #region Quản lý bài đăng
-        public ActionResult QuanLyBaiDang(int maTrangThai)
+        public ActionResult QuanLyBaiDang(int? page, int maTrangThai = 1)
         {
+            int pageSize = 12;
+            int pageNum = (page ?? 1);
             switch (maTrangThai)
             {
                 case 1:
@@ -316,7 +318,8 @@ namespace WebRaoVat.Controllers
                     break;
             }
             ViewBag.Hinh = database.Hinhs.ToList();
-            return View(database.BaiDangs.Where(s=>s.maTinhTrangBaiDang==maTrangThai).ToList());
+            var dsBaiDang = database.BaiDangs.Where(s => s.maTinhTrangBaiDang == maTrangThai).ToList();
+            return View(dsBaiDang.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult ThayDoiTrangThaiBaiDang(int maBaiDang)
@@ -353,8 +356,8 @@ namespace WebRaoVat.Controllers
         #endregion
 
 
-        
-        
-        
+
+
+
     }
 }
