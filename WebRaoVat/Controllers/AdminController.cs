@@ -296,10 +296,22 @@ namespace WebRaoVat.Controllers
         #endregion
 
         #region Quản lý bài đăng
-        public ActionResult QuanLyBaiDang()
+        public ActionResult QuanLyBaiDang(int maTrangThai)
         {
+            switch (maTrangThai)
+            {
+                case 1:
+                    ViewBag.TrangThaiBD = "Bài đăng chờ duyệt";
+                    break;
+                case 2:
+                    ViewBag.TrangThaiBD = "Bài đăng đã duyệt";
+                    break;
+                case 3:
+                    ViewBag.TrangThaiBD = "Bài đăng không duyệt";
+                    break;
+            }
             ViewBag.Hinh = database.Hinhs.ToList();
-            return View(database.BaiDangs.ToList());
+            return View(database.BaiDangs.Where(s=>s.maTinhTrangBaiDang==maTrangThai).ToList());
         }
 
         public ActionResult ThayDoiTrangThaiBaiDang(int maBaiDang)

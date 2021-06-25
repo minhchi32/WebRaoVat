@@ -20,7 +20,7 @@ namespace WebRaoVat.Models
         public ChuyenMuc()
         {
             this.DanhMucs = new HashSet<DanhMuc>();
-            hinhChuyenMuc = "~/Content/images/img_default.png";
+            hinhChuyenMuc = "~/Content/images/img_default.jpg";
         }
     
         public int maChuyenMuc { get; set; }
