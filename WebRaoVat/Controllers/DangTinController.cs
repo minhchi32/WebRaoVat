@@ -6,7 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebRaoVat.Models;
-
+using PagedList;
+using PagedList.Mvc;
 namespace WebRaoVat.Controllers
 {
     public class DangTinController : Controller
@@ -119,12 +120,14 @@ namespace WebRaoVat.Controllers
 
         }
 
-        public ActionResult ToiBan(int id)
+        public ActionResult ToiBan(int id, int? page)
         {
+            int pageSize = 12;
+            int pageNum = (page ?? 1);
             var baidang = database.BaiDangs.Where(s => s.maNguoiDung == id).ToList();
             ViewBag.Hinh = database.Hinhs.ToList();
             ViewBag.BaiDang = baidang;
-            return View(baidang);
+            return View(baidang.ToPagedList(pageNum, pageSize));
         }
         public ActionResult CTToiBan(int maBaiDang)
         {

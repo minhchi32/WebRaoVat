@@ -88,7 +88,17 @@
                             }
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
+                    <div class="form-inline my-2 my-lg-0">
+                        @using (Html.BeginForm("TimKiem", "TrangChu", FormMethod.Get))
+                        {
+                            @Html.TextBox("ten")<input type="submit" value="Tìm kiếm" class="btn btn-outline-success my-2 my-sm-0"/>
+                        }
+                    </div>
+                    @*<form class="form-inline my-2 my-lg-0">
+                        @using (Html.BeginForm("TimKiem", "TrangChu", FormMethod.Get))
+                        {
+                            @Html.TextBox("ten")<input type="submit" value="Tìm kiếm"/>
+                        }
                         <input class="form-control mr-sm-2"
                                type="text"
                                placeholder="Search"
@@ -97,7 +107,7 @@
                                 type="submit">
                             Search
                         </button>
-                    </form>
+                    </form>*@
                 </div>
             </div>
         </nav>
