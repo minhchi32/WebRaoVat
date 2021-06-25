@@ -1,147 +1,194 @@
-﻿@model IEnumerable<WebRaoVat.Models.BaiDang>
-
+﻿@*@model IEnumerable<WebRaoVat.Models.BaiDang>*@
+@using WebRaoVat.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<BaiDang>
 @{
     ViewBag.Title = "QuanLyBaiDang";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutQLBaiDang.cshtml";
 }
 
-<h2>Quản lý bài đăng</h2>
-<div>
+@*<div>
 
-    <section>
-        <div class="container">
-            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                <li class="nav-item active">
-                    <a class="nav-link active" id="tab-cho-duyet" data-toggle="tab" href="#bai-dang-cho-duyet" role="tab" aria-controls="bai-dang-cho-duyet" aria-selected="true">
-                        Bài đăng chờ duyệt
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab-khong-duyet" data-toggle="tab" href="#bai-dang-khong-duyet" role="tab" aria-controls="bai-dang-khong-duyet" aria-selected="false">
-                        Bài đăng không duyệt
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab-da-duyet" data-toggle="tab" href="#bai-dang-da-duyet" role="tab" aria-controls="bai-dang-da-duyet" aria-selected="false">
-                        Bài đăng đã duyệt
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab-da-an" data-toggle="tab" href="#bai-dang-da-an" role="tab" aria-controls="bai-dang-da-an" aria-selected="false">
-                        Bài đăng đã ẩn
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <section>
-        <div class="tab-content container" id="nav-tabContent">
-            <div id="bai-dang-cho-duyet" class="tab-pane fade active in show" role="tabpanel" aria-labelledby="nav-tab-cho-duyet">
-                <div class="container">
-                    <div style="background-color: white; padding: 10px; height:100%; width:100%;">
-                        <div class="row" style="margin:10px">
+        <section>
+            <div class="container">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    <li class="nav-item active">
+                        <a class="nav-link active" id="tab-cho-duyet" data-toggle="tab" href="#bai-dang-cho-duyet" role="tab" aria-controls="bai-dang-cho-duyet" aria-selected="true">
+                            Bài đăng chờ duyệt
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-khong-duyet" data-toggle="tab" href="#bai-dang-khong-duyet" role="tab" aria-controls="bai-dang-khong-duyet" aria-selected="false">
+                            Bài đăng không duyệt
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-da-duyet" data-toggle="tab" href="#bai-dang-da-duyet" role="tab" aria-controls="bai-dang-da-duyet" aria-selected="false">
+                            Bài đăng đã duyệt
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-da-an" data-toggle="tab" href="#bai-dang-da-an" role="tab" aria-controls="bai-dang-da-an" aria-selected="false">
+                            Bài đăng đã ẩn
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="tab-content container" id="nav-tabContent">
+                <div id="bai-dang-cho-duyet" class="tab-pane fade active in show" role="tabpanel" aria-labelledby="nav-tab-cho-duyet">
+                    <div class="container">
+                        <div style="background-color: white; padding: 10px; height:100%; width:100%;">
+                            <div class="row" style="margin:10px">
 
-                            @showPost(1)
+                                @showPost(1)
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
+                </div>
+
+                <div id="bai-dang-khong-duyet" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-tab-khong-duyet">
+                    <div class="container">
+                        <div style="background-color: white; padding: 10px; height:100%; width:100%">
+                            <div class="row" style="margin:10px">
+
+                                @showPost(3)
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="bai-dang-da-duyet" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-tab-da-duyet">
+                    <div class="container">
+                        <div style="background-color: white; padding: 10px; height:100%; width:100%">
+                            <div class="row" style="margin:10px">
+
+                                @showPost(2)
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="bai-dang-da-an" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-tab-da-an">
+                    <div class="container">
+                        <div style="background-color: white; padding: 10px; height:100%; width:100%">
+                            <div class="row" style="margin:10px">
+
+                                @showPost(4)
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+        </section>
+    </div>
 
-            <div id="bai-dang-khong-duyet" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-tab-khong-duyet">
-                <div class="container">
-                    <div style="background-color: white; padding: 10px; height:100%; width:100%">
-                        <div class="row" style="margin:10px">
-
-                            @showPost(3)
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div id="bai-dang-da-duyet" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-tab-da-duyet">
-                <div class="container">
-                    <div style="background-color: white; padding: 10px; height:100%; width:100%">
-                        <div class="row" style="margin:10px">
-
-                            @showPost(2)
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div id="bai-dang-da-an" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-tab-da-an">
-                <div class="container">
-                    <div style="background-color: white; padding: 10px; height:100%; width:100%">
-                        <div class="row" style="margin:10px">
-
-                            @showPost(4)
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-@helper showPost(int num)
-{
-    foreach (var item in Model)
+    @helper showPost(int num)
     {
-        if (item.maTinhTrangBaiDang == num)
+        foreach (var item in Model)
         {
+            if (item.maTinhTrangBaiDang == num)
+            {
 
-            <div class="col-6 col-md-4 col-lg-3">
-                <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTToiBan", "DangTin", new { maBaiDang = item.maBaiDang })'">
-                    @foreach (var i in ViewBag.Hinh)
-                    {
-                        if (item.maBaiDang == i.maBaiDang)
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTToiBan", "DangTin", new { maBaiDang = item.maBaiDang })'">
+                        @foreach (var i in ViewBag.Hinh)
                         {
-                            <img src="@Url.Content(i.path)" alt="Alternate Text" style="height:55%; overflow:hidden" />
-                            break;
+                            if (item.maBaiDang == i.maBaiDang)
+                            {
+                                <img src="@Url.Content(i.path)" alt="Alternate Text" style="height:55%; overflow:hidden" />
+                                break;
+                            }
                         }
-                    }
-                    <div class="card-body" style="width: 100%">
-                        @if (item.tieuDe.ToString().Length > 44)
-                        {
-                            <p class="card-text">
-                                @item.tieuDe.ToString().Substring(0, 44) ...
-                            </p>
-                        }
-                        else
-                        {
-                            <p class="card-text"> @item.tieuDe</p>
+                        <div class="card-body" style="width: 100%">
+                            @if (item.tieuDe.ToString().Length > 44)
+                            {
+                                <p class="card-text">
+                                    @item.tieuDe.ToString().Substring(0, 44) ...
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text"> @item.tieuDe</p>
 
-                        }
-                        @if (@item.gia.ToString().Length > 10)
-                        {
-                            <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
-                        }
-                        else
-                        {
-                            <p>@String.Format("{0:0,0 VNĐ}", item.gia)</p>
-                        }
+                            }
+                            @if (@item.gia.ToString().Length > 10)
+                            {
+                                <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
+                            }
+                            else
+                            {
+                                <p>@String.Format("{0:0,0 VNĐ}", item.gia)</p>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
-    }
-}
-<style>
-    .card-hover:hover {
-        background-color: white;
-        color: black;
-        box-shadow: 3px 2px 10px gray;
-        cursor: pointer;
-    }
+    }*@
 
-    .card-text {
-        color: gray;
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<h2>@ViewBag.TrangThaiBD</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-6 col-md-3 col-lg-3">
+            <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("ChiTietBaiDang", "Admin", new { maBaiDang = item.maBaiDang })'">
+                @foreach (var i in ViewBag.Hinh)
+                {
+                    if (item.maBaiDang == i.maBaiDang)
+                    {
+                        <img src="@Url.Content(i.path)" alt="Alternate Text" style="height:55%; overflow:hidden" />
+                        break;
+                    }
+                }
+                <div class="card-body" style="width: 100%">
+                    @if (item.tieuDe.ToString().Length > 44)
+                    {
+                        <p class="card-text">
+                            @item.tieuDe.ToString().Substring(0, 44) ...
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="card-text"> @item.tieuDe</p>
+
+                    }
+                    @if (@item.gia.ToString().Length > 10)
+                    {
+                        <p> @item.gia.ToString().Substring(0, @item.gia.ToString().Length - 9) tỷ VNĐ</p>
+                        <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
+                    }
+                    else
+                    {
+                        <p>@String.Format("{0:0,0 VNĐ}", item.gia)</p>
+                        <p style="font-size:0.9em">Lượt xem: @item.luotXem</p>
+                    }
+                </div>
+            </div>
+        </div>
     }
-</style>
+    </div>
+    <div class="MenuPage">
+        @Html.PagedListPager(Model, page => Url.Action("QuanLyBaiDang", new { page = page, maTrangThai = ViewBag.TrangThai }))
+    </div>
+    <style>
+        .card-hover:hover {
+            background-color: white;
+            color: black;
+            box-shadow: 3px 2px 10px gray;
+            cursor: pointer;
+        }
+
+        .card-text {
+            color: gray;
+        }
+    </style>

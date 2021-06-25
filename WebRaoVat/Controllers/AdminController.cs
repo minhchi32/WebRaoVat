@@ -301,10 +301,12 @@ namespace WebRaoVat.Controllers
         #endregion
 
         #region Quản lý bài đăng
-        public ActionResult QuanLyBaiDang(int? page, int maTrangThai = 1)
+        public ActionResult QuanLyBaiDang(int?page, int maTrangThai)
         {
             int pageSize = 12;
             int pageNum = (page ?? 1);
+            //ViewBag.Hinh = database.Hinhs.ToList();
+            //var dsBaiDang = database.BaiDangs.ToList();
             switch (maTrangThai)
             {
                 case 1:
@@ -317,11 +319,21 @@ namespace WebRaoVat.Controllers
                     ViewBag.TrangThaiBD = "Bài đăng không duyệt";
                     break;
             }
+            ViewBag.TrangThai = maTrangThai;
             ViewBag.Hinh = database.Hinhs.ToList();
             var dsBaiDang = database.BaiDangs.Where(s => s.maTinhTrangBaiDang == maTrangThai).ToList();
-            return View(dsBaiDang.ToPagedList(pageNum, pageSize));
+            return View(dsBaiDang.ToPagedList(pageNum,pageSize));
         }
 
+        public PartialViewResult NavBaiDang(int maTrangThai)
+        {
+            //int pageSize = 12;
+            //int pageNum = (page ?? 1);
+
+            ViewBag.Hinh = database.Hinhs.ToList();
+            var dsBaiDang = database.BaiDangs.Where(s => s.maTinhTrangBaiDang == maTrangThai).ToList();
+            return PartialView(dsBaiDang);
+        }
         public ActionResult ThayDoiTrangThaiBaiDang(int maBaiDang)
         {
             var dsTTBD = database.TinhTrangBaiDangs.ToList();

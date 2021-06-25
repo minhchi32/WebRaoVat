@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "_LayoutTinhTrangBaiDang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản lý bài đăng</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-4 text-center">
+            <a href="@Url.Action("QuanLyBaiDang", "Admin", new { maTrangThai = 1 })" class="btn btn-primary">Bài đăng chờ duyệt</a>
+        </div>
+        <div class="col-4 text-center">
+            <a href="@Url.Action("QuanLyBaiDang", "Admin", new { maTrangThai = 3 })" class="btn btn-primary">Bài đăng không duyệt</a>
+        </div>
+        <div class="col-4 text-center">
+            <a href="@Url.Action("QuanLyBaiDang", "Admin", new { maTrangThai = 2 })" class="btn btn-primary">Bài đăng đã duyệt</a>
+        </div>
+    </div>
+    <br />
+        @RenderBody()
+
+</div>

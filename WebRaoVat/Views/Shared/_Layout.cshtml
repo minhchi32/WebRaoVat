@@ -67,7 +67,7 @@
                                     }
                                     else
                                     {
-                                        <a class="dropdown-item" href="@Url.Action("QuanLyBaiDang","NguoiDung",new { id = Session["id"]})">Quản lý bài đăng</a>
+                                        <a class="dropdown-item" href="@Url.Action("QuanLyBaiDang","NguoiDung",new { id = Session["id"], maTrangThai=1})">Quản lý bài đăng</a>
                                     }
                                     <a class="dropdown-item" href="@Url.Action("LogOutUser","NguoiDung")">Đăng xuất</a>
                                 </div>

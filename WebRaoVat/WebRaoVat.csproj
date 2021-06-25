@@ -271,6 +271,9 @@
     <Content Include="Views\Admin\ThemDanhMuc.cshtml" />
     <Content Include="Views\Admin\SuaDanhMuc.cshtml" />
     <Content Include="Views\Admin\XoaDanhMuc.cshtml" />
+    <Content Include="Views\Admin\NavBaiDang.cshtml" />
+    <Content Include="Views\Shared\_LayoutTinhTrangBaiDang.cshtml" />
+    <Content Include="Views\Shared\_LayoutQLBaiDang.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

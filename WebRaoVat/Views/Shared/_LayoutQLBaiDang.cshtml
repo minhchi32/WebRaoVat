@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Quản lí bài đăng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top:30px;background-color:white">    
+    <h2>Quản lý bài đăng</h2>
+    <div class="container-fuid">
+        <div class="row">
+            <div class="col-3 text-center">
+                <a href="@Url.Action("QuanLyBaiDang", "NguoiDung", new { id=Session["id"] ,maTrangThai = 1 })" class="btn btn-primary">Bài đăng chờ duyệt</a>
+            </div>
+            <div class="col-3 text-center">
+                <a href="@Url.Action("QuanLyBaiDang", "NguoiDung", new { id=Session["id"], maTrangThai = 3 })" class="btn btn-primary">Bài đăng không duyệt</a>
+            </div>
+            <div class="col-3 text-center">
+                <a href="@Url.Action("QuanLyBaiDang", "NguoiDung", new { id=Session["id"], maTrangThai = 2 })" class="btn btn-primary">Bài đăng đã duyệt</a>
+            </div>
+            <div class="col-3 text-center">
+                <a href="@Url.Action("QuanLyBaiDang", "NguoiDung", new { id=Session["id"], maTrangThai = 4 })" class="btn btn-primary">Bài đăng đã ẩn</a>
+            </div>
+        </div>
+        <br />
+        @RenderBody()
+
+    </div>
+</div>
+<br /><br />

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PagedList;
+using PagedList.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -81,10 +83,28 @@ namespace WebRaoVat.Controllers
             }
             return View();
         }
-        public ActionResult QuanLyBaiDang(int id)
+        public ActionResult QuanLyBaiDang(int? page, int id, int maTrangThai)
         {
+            int pageSize = 12;
+            int pageNum = (page ?? 1);
+            switch (maTrangThai)
+            {
+                case 1:
+                    ViewBag.TrangThaiBD = "Bài đăng chờ duyệt";
+                    break;
+                case 2:
+                    ViewBag.TrangThaiBD = "Bài đăng đã duyệt";
+                    break;
+                case 3:
+                    ViewBag.TrangThaiBD = "Bài đăng không duyệt";
+                    break;
+                case 4:
+                    ViewBag.TrangThaiBD = "Bài đăng đã ẩn";
+                    break;
+            }
             ViewBag.Hinh = database.Hinhs.ToList();
-            return View(database.BaiDangs.Where(s => s.maNguoiDung == id).ToList());
+            var dsBaiDang = database.BaiDangs.Where(s => s.maNguoiDung == id && s.maTinhTrangBaiDang == maTrangThai).ToList();
+            return View(dsBaiDang.ToPagedList(pageNum, pageSize));
         }
     }
 }
