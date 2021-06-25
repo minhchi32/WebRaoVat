@@ -197,6 +197,12 @@ namespace WebRaoVat.Controllers
                         hinhs.maBaiDang = model.maBaiDang;
                         database.Hinhs.Add(hinhs);
                     }
+                    else
+                    {
+                        Hinh hinh = new Hinh();
+                        hinh.path = "~/Content/images/img_default.jpg";
+                        database.Hinhs.Add(hinh);
+                    }
                 }
 
                 var baid = database.BaiDangs.Where(s => s.maBaiDang == model.maBaiDang).FirstOrDefault();

@@ -141,7 +141,7 @@
     @foreach (var item in Model)
     {
         <div class="col-6 col-md-3 col-lg-3">
-            <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("ChiTietBaiDang", "Admin", new { maBaiDang = item.maBaiDang })'">
+            <div href="" class="card card-hover" style="height:330px; margin-top:20px" onclick="location.href='@Url.Action("CTToiBan", "DangTin", new { maBaiDang = item.maBaiDang })'">
                 @foreach (var i in ViewBag.Hinh)
                 {
                     if (item.maBaiDang == i.maBaiDang)

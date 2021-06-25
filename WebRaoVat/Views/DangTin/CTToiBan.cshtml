@@ -114,27 +114,34 @@
         }
 
 
-        <div class="col-md-5" style="margin-top:20px">
-            <h3>@Model.tieuDe</h3>
-            <p>Đăng lúc: @Model.ngayDang.Day/@Model.ngayDang.Month/@Model.ngayDang.Year</p>
-            <p style="font-weight:bold;color:orange; font-size:1.3em">Giá bán: @String.Format("{0:0,0 VNĐ}", Model.gia)</p>
+    <div class="col-md-5" style="margin-top:20px">
+        <h3>@Model.tieuDe</h3>
+        <p>Đăng lúc: @Model.ngayDang.Day/@Model.ngayDang.Month/@Model.ngayDang.Year</p>
+        <p style="font-weight:bold;color:orange; font-size:1.3em">Giá bán: @String.Format("{0:0,0 VNĐ}", Model.gia)</p>
 
-            <div class="container" style="border:1px solid gray; width:100%; border-radius:10px">
-                <div class="row" style="background-color:#F8F8F8; border-radius:10px;">
-                    <div class="col-md-12" style="border-bottom: 1px solid gray; text-align:center">
-                        <p style="font-weight:bold;padding-top:10px">Liên hệ người bán</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p><i class="bi bi-person"></i> @Model.NguoiDung.email</p>
-                        <p style="font-weight:bold"><i class="bi bi-telephone"></i> @Model.NguoiDung.SDT</p>
-                    </div>
+        <div class="container" style="border:1px solid gray; width:100%; border-radius:10px">
+            <div class="row" style="background-color:#F8F8F8; border-radius:10px;">
+                <div class="col-md-12" style="border-bottom: 1px solid gray; text-align:center">
+                    <p style="font-weight:bold;padding-top:10px">Liên hệ người bán</p>
                 </div>
             </div>
-            <br />
-            <button class="btn btn-primary"  onclick="location.href='@Url.Action("SuaBaiDang","DangTin", new {maBaiDang=Model.maBaiDang})'">Sửa bài đăng</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><i class="bi bi-person"></i> @Model.NguoiDung.email</p>
+                    <p style="font-weight:bold"><i class="bi bi-telephone"></i> @Model.NguoiDung.SDT</p>
+                </div>
+            </div>
         </div>
+        <br />
+        @if (Model.maTinhTrangBaiDang == 1)
+        {
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("SuaBaiDang","DangTin", new {maBaiDang=Model.maBaiDang})'">Sửa bài đăng</button>
+        }
+        else
+        {
+            <button class="btn btn-primary" disabled>Sửa bài đăng</button>
+        }
+    </div>
     </div>
     <div class="row" style="margin-top:50px">
         <div class="col-md-12">
